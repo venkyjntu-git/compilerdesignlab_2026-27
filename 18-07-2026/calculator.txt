@@ -1,0 +1,19 @@
+   Design a Calculator program which takes Arithmetic expresions as 
+   input and gives result of expression value
+
+   Examples:   2+3*5   ====>   17
+               52-32   ====>   20
+
+
+   1. Identify the set of allowed symbols = { 0-9, +, -, *, /, %}
+   2. Identify the tokens in the language
+         NUMBER, ADD(+), SUB(-) , MULTIPLY(*), DIV(/), REMAINDER(%)
+   3. Check whether it can be generated from expression grammar
+        E ->  E + T  | E - T | T
+       T ->  T * F  | T /F  | T % F | F
+       F ->  NUMBER
+
+
+   EX:    2 + 3 *5
+
+     =>   NUMBER + NUMBER * NUMBER
