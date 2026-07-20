@@ -32,8 +32,6 @@ SLY builds its master regex in this priority:
   For example, if you wanted to have separate tokens for = and ==, you need to make sure that == is listed first
 
 
-
-
 ### 3. Ignoring whitespace vs. ignoring comments
 
 Two different mechanisms, don't confuse them:
