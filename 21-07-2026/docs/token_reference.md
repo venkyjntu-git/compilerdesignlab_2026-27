@@ -26,7 +26,7 @@ This is the *only* part of the TinyCStr grammar you need for Week 2. Ignore ever
 | `MINUS`   | `-`     | `-`     |
 | `TIMES`   | `*`     | `*`     |
 | `DIVIDE`  | `/`     | `/`     |
-| `REMINDER`| `%`     |  `%`    |
+| `REMAINDER`| `%`     |  `%`    |
 
 ## Rules that apply throughout
 
