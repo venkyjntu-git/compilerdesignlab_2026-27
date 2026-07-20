@@ -1,10 +1,11 @@
-# SLY Lexer Cheat-Sheet (Week 2)
+# SLY Lexer Help File (Week 2)
 
 Read this before writing `tinycstr_lexer.py`. 
+
 Important points related to sly Lexer:
 
-## 1. Tokens are matched in the same order that patterns(regular expressions) are listed in the Lexer class.
-## 2. Longer tokens always need to be specified before short tokens.
+# 1. Tokens are matched in the same order that patterns(regular expressions) are listed in the Lexer class.
+# 2. Longer tokens always need to be specified before short tokens.
 
 
 ### 1. Keyword vs. identifier disambiguation
