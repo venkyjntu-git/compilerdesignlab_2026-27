@@ -5,7 +5,7 @@ Usage:
     python3 main.py [options] file
 
 This is the single entry point for the whole course -- each week wires up
-one more stage instead of adding a new script. As of Week 2, only -tokens
+one more stage instead of adding a new script. for now, only -tokens
 is implemented. 
 
 Options:
@@ -63,7 +63,7 @@ def main(argv=None):
     if args.tokens:
         tokens_file_name = args.file + ".toks"
         with open(tokens_file_name, "w") as tokens_file:
-            write_tokens(args.file, tokens_file)  # WEEK 2: implemented
+            write_tokens(args.file, tokens_file)
 
     if args.parse:
         print("Not implemented yet!")
