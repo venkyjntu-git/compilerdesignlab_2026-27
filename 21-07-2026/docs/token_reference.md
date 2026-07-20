@@ -15,6 +15,8 @@ This is the *only* part of the TinyCStr grammar you need for Week 2. Ignore ever
 | `LBRACE` | `{`                                | `{`            |
 | `RBRACE` | `}`                                | `}`            |
 | `COMMA`  | `,`                                | `,`            |
+| `LPAREN`  | `(`                               | `(`     |
+| `RPAREN`  | `)`                               | `)`     |
 
 ## Stage 1b token set (add on top of 1a)
 
@@ -25,8 +27,6 @@ This is the *only* part of the TinyCStr grammar you need for Week 2. Ignore ever
 | `TIMES`   | `*`     | `*`     |
 | `DIVIDE`  | `/`     | `/`     |
 | `REMINDER`| `%`     |  `%`    |
-| `LPAREN`  | `(`     | `(`     |
-| `RPAREN`  | `)`     | `)`     |
 
 ## Rules that apply throughout
 
