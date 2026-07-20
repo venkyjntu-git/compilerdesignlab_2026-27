@@ -2,12 +2,6 @@
 
 Read this before writing `tinycstr_lexer.py`. 
 
-Important points related to sly Lexer:
-
-# 1. Tokens are matched in the same order that patterns(regular expressions) are listed in the Lexer class.
-# 2. Longer tokens always need to be specified before short tokens.
-
-
 ### 1. Keyword vs. identifier disambiguation
 
 **Do not** write a separate regex per keyword (e.g. one rule for `int`, another for `print`). If you do, then a keyword regex will often incorrectly match a prefix of a longer identifier.
@@ -33,11 +27,11 @@ This is *the* standard method for keyword handling in every lex-style tool (flex
 
 SLY builds its master regex in this priority:
 
-- Tokens defined as **plain string attributes** (`ASSIGN = r'='`) are tried in order of
-  **decreasing regex length** — longest pattern string first.
-- Tokens defined as **functions** (`@_(...)  def ID(self, t): ...`) are tried in the order
-  they're **written in the class body**, and functions are matched before string-attribute
-  tokens regardless of length.
+- Tokens are matched in the same order that patterns are listed in the Lexer class. 
+- Longer tokens always need to be specified before short tokens. 
+  For example, if you wanted to have separate tokens for = and ==, you need to make sure that == is listed first
+
+
 
 
 ### 3. Ignoring whitespace vs. ignoring comments
