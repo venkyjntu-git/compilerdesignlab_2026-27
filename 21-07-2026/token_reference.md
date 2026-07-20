@@ -8,7 +8,7 @@ This is the *only* part of the TinyCStr grammar you need for Week 2. Ignore ever
 |----------|-----------------------------------|----------------|
 | `INT`    | the literal keyword `int`         | `int`          |
 | `PRINT`  | the literal keyword `print`       | `print`        |
-| `ID`     | identifier: letter or `_`, then any run of letters/digits/`_` | `a`, `count`, `_tmp1` |
+| `ID`     | identifier: starts with letter or `_`, followed by any number of letters/digits/`_` | `a`, `count`, `_tmp1` |
 | `NUMBER` | one or more decimal digits        | `5`, `40`      |
 | `ASSIGN` | `=`                                | `=`            |
 | `SEMI`   | `;`                                | `;`            |
