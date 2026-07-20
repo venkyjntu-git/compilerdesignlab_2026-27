@@ -10,7 +10,7 @@ is implemented.
 
 Options:
     -h, --help          print this help message and exit
-    -tokens             write tokens to stdout
+    -tokens             write tokens to stdout/file.toks
 """
 import argparse
 import sys
@@ -20,10 +20,9 @@ from tinycstr_lexer import TinyCStrLexer
 
 def write_tokens(source_path, out_file):
     """
-    Tokenizes source_path with TinyCStrLexer and writes one line per token,
+    Tokenizes given TinyCStr source language program with TinyCStrLexer and writes one line per token,
     'TYPE value lineno', to out_file. Illegal characters are written as
-    'ERROR char lineno' lines, interleaved at the point they occur in the
-    file.
+    'ERROR char lineno' lines, interleaved at the point they occur in the file.
     """
     with open(source_path) as f:
         source = f.read()
