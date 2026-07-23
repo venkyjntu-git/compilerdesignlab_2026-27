@@ -30,7 +30,7 @@ This is the *only* part of the TinyCStr grammar you need for Week 2. Ignore ever
 
 ## Rules that apply throughout
 
-- **Identifiers vs. keywords:** `int` and `print` are reserved words. `interest`, `printer`, `int1` are all valid *identifiers*, not keywords — your lexer must not match a prefix. See `docs/sly_cheatsheet.md` for handling
+- **Identifiers vs. keywords:** `int` and `print` are reserved words. `interest`, `printer`, `int1` are all valid *identifiers*, not keywords — your lexer must not match a prefix. See `docs/sly_help.md` for handling
 - **Whitespace:** spaces and tabs between tokens are insignificant and produce no token.
 - **Comments:** `//` starts a comment that runs to the end of the physical line. A comment can appear after code on the same line. There are no multi-line comments in TinyCStr.
 - **Newlines:** not a token, but every token must carry line number (`tok.lineno`), because error messages require line no.
