@@ -1,0 +1,15 @@
+digraph AST {
+  n0 [label="Assign"];
+  n1 [label="Var(a)"];
+  n0 -> n1;
+  n2 [label="BinOp(+)"];
+  n0 -> n2;
+  n3 [label="Num(2)"];
+  n2 -> n3;
+  n4 [label="BinOp(*)"];
+  n2 -> n4;
+  n5 [label="Num(3)"];
+  n4 -> n5;
+  n6 [label="Num(5)"];
+  n4 -> n6;
+}
