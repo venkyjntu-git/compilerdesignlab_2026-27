@@ -2,13 +2,18 @@
 
 This lab practice focuses on constructing an **Abstract Syntax Tree (AST)** for simple assignment statements containing arithmetic expressions.
 
+## 1. What is an AST?
+
+An **Abstract Syntax Tree (AST)** is a tree representation of the syntactic structure of a program.
+
+Each node represents a construct in the program.
+
 For example:
 
 ```text
 x = a + b * c
 ```
 
-The AST represents the hierarchical structure of the expression while ignoring unnecessary syntactic details.
 
 The corresponding AST is:
 
@@ -26,33 +31,6 @@ The tree clearly shows that multiplication is performed before addition.
 
 ---
 
-## 1. What is an AST?
-
-An **Abstract Syntax Tree (AST)** is a tree representation of the syntactic structure of a program.
-
-Each node represents a construct in the program.
-
-For example:
-
-```text
-x = a + b * c
-```
-
-can be represented as:
-
-```text
-Assignment
-├── x
-└── +
-    ├── a
-    └── *
-        ├── b
-        └── c
-```
-
-The AST captures the essential structure of the program and removes unnecessary details such as parentheses and other syntactic elements.
-
----
 
 ## 2. Graphviz DOT Language
 
