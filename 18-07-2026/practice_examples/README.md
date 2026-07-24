@@ -137,7 +137,7 @@ parses `a=2+3*5`, prints the `pretty()` text form to stdout, and writes `ast.dot
 dot -Tpng ast.dot -o ast.png
 ```
 (requires the Graphviz `dot` command-line tool — install via your OS package manager, e.g.
-`apt install graphviz`  not just the Python `graphviz` package).
+`apt install graphviz` or install from https://graphviz.org/download/ ).
 
 Try other inputs by editing `inp` at the bottom of `ExprAstParser.py` — e.g. `b=(1+2)*3` once
 you add parenthesized-expression support, which is a natural next practice step before Week 3's
