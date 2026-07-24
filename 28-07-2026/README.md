@@ -7,7 +7,7 @@
 - `tinycstr_lexer.py` — a **verified reference lexer** (Level 1, Stages 1a+1b complete). 
 - `ast_nodes.py` — the AST node classes (`ASTNode` base, `Num`, `Var`, `Assign`, `Print`,`BinOp`), plus the shared `pretty()` and `to_dot()` tree-walkers. Fully implemented — this week's learning objective is the parser that *builds* these trees, not the node classes themselves.
 - `SymbolTable.py` — `DataType`, `SymbolTableEntry`, `SymbolTable`. Fully implemented.
-- `Function.py` / `Program.py` — plain program-structure containers (NOT AST nodes — see `docs/grammar_ast_reference.md`). Fully implemented.
+- `Function.py` / `Program.py` — plain program-structure containers (Not as AST nodes — see `docs/grammar_ast_reference.md`). Fully implemented.
 
 ## What you need to do
 
@@ -16,7 +16,7 @@
 ## What's provided to help you
 
 - `docs/grammar_ast_reference.md` — the exact Level 1 grammar (Stage 1a and 1b) and the AST-vs-program-structure design rule this week is built around.
-- `docs/sly_parser_help.md` — SLY parser-specific mechanics: `return` vs. `p[0]`, precedence-tuple ordering , reading the conflict debug log, `p.expr0`/`p.expr1` disambiguation, and `error(self, token)` when `token is None`.
+- `docs/sly_parser_help.md` — SLY parser-specific mechanics: `return`, precedence-tuple ordering , reading the conflict debug log, `p.expr0`/`p.expr1` disambiguation, and `error(self, token)` when `token is None`.
 - `docs/grading_rubric.md` — point-by-point breakdown, with the precedence-table check weighted
   heavily since it's the easiest place to be silently wrong.
 - `tests/` — three `.tc` programs and their exact expected AST text
