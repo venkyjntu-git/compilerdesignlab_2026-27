@@ -168,9 +168,6 @@ class TinyCStrParser(Parser):
 
 
 if __name__ == '__main__':
-    # Quick manual smoke test while developing; prefer the golden tests
-    # in tests/ and `python main.py -ast <file>` for anything you're
-    # actually submitting.
     from ast_nodes import pretty
 
     sample = "int main(){\n  int a;\n  a = 5;\n  print a;\n}\n"
