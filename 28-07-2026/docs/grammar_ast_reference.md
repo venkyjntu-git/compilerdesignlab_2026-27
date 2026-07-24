@@ -7,13 +7,15 @@ This is the *only* grammar you need for Week 3. No control flow, no functions be
 ```
 program    : func_def
 
-func_def  : INT ID LPAREN RPAREN LBRACE stmt_list RBRACE
+func_def  : INT ID LPAREN RPAREN LBRACE decl_stmt_list stmt_list RBRACE
+
+decl_stmt_list : decl_stmt_list decl
+                | empty
 
 stmt_list  : stmt_list stmt
            | empty
 
-stmt       : decl
-           | assign
+stmt       : assign
            | print_stmt
 
 decl       : INT id_list SEMICOLON          
