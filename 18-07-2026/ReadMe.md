@@ -37,7 +37,7 @@ The lexer specification is defined by creating a class that inherits from `sly.L
   assign a token type, not transform the matched value.
 
 Run the lexer standalone (uncommented at the bottom of `CalcLexer.py`) to see the token stream
-for `2+3*5` before worrying about the parser at all — worth doing once.
+for `2+3*5` before constructing parser.
 
 ## SLY Parser, briefly
 
