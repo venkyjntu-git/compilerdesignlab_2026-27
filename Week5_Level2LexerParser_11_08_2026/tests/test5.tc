@@ -1,0 +1,12 @@
+int main(){
+    int a,b;
+    char c;
+    string s;
+    a = 5;
+    b = 10;
+    c = 'x';
+    s = "hello";
+    print (a < b);
+    print c;
+    print s;
+}
