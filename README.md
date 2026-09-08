@@ -16,12 +16,12 @@ The course structure is inspired by Prof. Uday Khedker's
 | Week | Focus | Level / Stage | Deliverable |
 |---|---|---|---|
 | 1 | Setup + TinyCStr orientation | — | Verified SLY + SPIM env  |
-| 2 | Lexer | L1a → L1b | Lexer for literals, then arithmetic tokens |
-| 3 | Parser + AST | L1a → L1b | AST for literal-only, then full expression grammar |
+| 2 | Lexer | L1a → L1b | Lexer for integers, then arithmetic tokens |
+| 3 | Parser + AST | L1a → L1b | AST for Assignments, then full expression grammar |
 | 4 | 3AC + MIPS | L1 | End-to-end L1 compiler, SPIM-verified |
 | 5 | Lexer + parser | L2a → L2c | Types, casting, relational/ternary ops |
-| 6 | Semantic analysis | L2 | Symbol table, type checking, typed 3AC |
-| 7 | MIPS codegen | L2 | Mixed-type MIPS, SPIM-verified |
+| 6 | Semantic analysis | L2 | Symbol table, type checking |
+| 7 | 3AC+ MIPS codegen | L2 | Mixed-type MIPS, SPIM-verified |
 | — | *Optional:* Toolchain survey | — | Ungraded, self-contained extra hour |
 | 8 | Lexer + parser | L3a → L3b | `if`, then `else`/`while` |
 | 9 | Control-flow 3AC + MIPS | L3 | CFG, branching, SPIM-verified |
