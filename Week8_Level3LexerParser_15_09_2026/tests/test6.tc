@@ -1,0 +1,8 @@
+int main(){
+    int a,b;
+    double c;
+    a=40;
+    b=50;
+    c = (a>b) ? (double)a/b : (double)b/a;
+    print c;
+}

@@ -1,0 +1,4 @@
+Function main
+  n: DataType.INT
+  i: DataType.INT
+  sum: DataType.INT

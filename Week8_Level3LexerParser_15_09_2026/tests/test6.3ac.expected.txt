@@ -1,0 +1,12 @@
+(0) a = 40
+(1) b = 50
+(2) > a, b : cmp INT
+(3) CAST(DOUBLE) a : from INT
+(4) CAST(DOUBLE) b : from INT
+(5) / (3), (4) : DOUBLE
+(6) CAST(DOUBLE) b : from INT
+(7) CAST(DOUBLE) a : from INT
+(8) / (6), (7) : DOUBLE
+(9) (2) ? (5) : (8) : DOUBLE
+(10) c = (9)
+(11) PRINT c

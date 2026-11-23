@@ -1,0 +1,52 @@
+.text
+.globl main
+main:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -16
+    move $sp, $fp
+    li $t0, 40
+    sw $t0, 0($fp)
+    li $t0, 50
+    sw $t0, 4($fp)
+    lw $t0, 0($fp)
+    lw $t1, 4($fp)
+    bgt $t0, $t1, L0
+    li $t2, 0
+    b L1
+    L0:
+    li $t2, 1
+    L1:
+    lw $t0, 0($fp)
+    mtc1 $t0, $f0
+    cvt.d.w $f2, $f0
+    lw $t0, 4($fp)
+    mtc1 $t0, $f0
+    cvt.d.w $f4, $f0
+    div.d $f0, $f2, $f4
+    lw $t0, 4($fp)
+    mtc1 $t0, $f6
+    cvt.d.w $f8, $f6
+    lw $t0, 0($fp)
+    mtc1 $t0, $f6
+    cvt.d.w $f10, $f6
+    div.d $f6, $f8, $f10
+    bne $t2, $zero, L2
+    mov.d $f12, $f6
+    b L3
+    L2:
+    mov.d $f12, $f0
+    L3:
+    s.d $f12, 8($fp)
+    l.d $f12, 8($fp)
+    mov.d $f12, $f12
+    li $v0, 3
+    syscall
+    addiu $sp, $fp, 16
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra

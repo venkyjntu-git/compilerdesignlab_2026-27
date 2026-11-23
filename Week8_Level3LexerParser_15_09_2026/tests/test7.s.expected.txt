@@ -1,0 +1,73 @@
+.data
+Lstr0: .asciiz "hello"
+.text
+.globl main
+main:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -32
+    move $sp, $fp
+    li $t0, 5
+    sw $t0, 0($fp)
+    li $t0, 10
+    sw $t0, 4($fp)
+    li.d $f0, 3.14
+    s.d $f0, 8($fp)
+    lw $t0, 0($fp)
+    mtc1 $t0, $f0
+    cvt.d.w $f2, $f0
+    s.d $f2, 16($fp)
+    li $t0, 120
+    sw $t0, 24($fp)
+    la $t0, Lstr0
+    sw $t0, 28($fp)
+    lw $t0, 0($fp)
+    lw $t1, 4($fp)
+    bgt $t0, $t1, L0
+    li $t2, 0
+    b L1
+    L0:
+    li $t2, 1
+    L1:
+    lw $t0, 0($fp)
+    mtc1 $t0, $f0
+    cvt.d.w $f2, $f0
+    lw $t0, 4($fp)
+    mtc1 $t0, $f0
+    cvt.d.w $f4, $f0
+    div.d $f0, $f2, $f4
+    bne $t2, $zero, L2
+    l.d $f8, 8($fp)
+    mov.d $f6, $f8
+    b L3
+    L2:
+    mov.d $f6, $f0
+    L3:
+    s.d $f6, 16($fp)
+    l.d $f6, 16($fp)
+    mov.d $f12, $f6
+    li $v0, 3
+    syscall
+    lw $t0, 0($fp)
+    lw $t1, 4($fp)
+    beq $t0, $t1, L4
+    li $t3, 0
+    b L5
+    L4:
+    li $t3, 1
+    L5:
+    move $a0, $t3
+    li $v0, 1
+    syscall
+    lw $t0, 28($fp)
+    move $a0, $t0
+    li $v0, 4
+    syscall
+    addiu $sp, $fp, 32
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra

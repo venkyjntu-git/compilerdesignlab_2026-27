@@ -1,0 +1,10 @@
+int main(){
+    int a,b,c;
+    double d;
+    a = 7;
+    b = 3;
+    c = 10;
+    d = (a > b) ? ((b > c) ? 1.5 : 2.5) : (double)c;
+    print d;
+    print ((int)(double)a);
+}
