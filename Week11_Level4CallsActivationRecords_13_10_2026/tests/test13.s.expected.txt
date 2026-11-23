@@ -1,0 +1,85 @@
+.text
+.globl main
+main:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -20
+    move $sp, $fp
+    li $t0, 5
+    sw $t0, 0($fp)
+    li $t0, 3
+    sw $t0, 4($fp)
+    li $t0, 7
+    sw $t0, 8($fp)
+    li $t0, 0
+    sw $t0, 12($fp)
+    li $t0, 0
+    sw $t0, 16($fp)
+    lw $t0, 0($fp)
+    lw $t1, 4($fp)
+    bgt $t0, $t1, L6
+    li $t2, 0
+    b L7
+    L6:
+    li $t2, 1
+    L7:
+    beq $t2, $zero, L0
+    lw $t0, 4($fp)
+    lw $t1, 8($fp)
+    bgt $t0, $t1, L8
+    li $t2, 0
+    b L9
+    L8:
+    li $t2, 1
+    L9:
+    beq $t2, $zero, L1
+    li $t0, 1
+    sw $t0, 12($fp)
+    j L2
+    L1:
+    li $t0, 2
+    sw $t0, 12($fp)
+    L2:
+    L0:
+    lw $t0, 0($fp)
+    lw $t1, 4($fp)
+    bgt $t0, $t1, L10
+    li $t2, 0
+    b L11
+    L10:
+    li $t2, 1
+    L11:
+    beq $t2, $zero, L3
+    lw $t0, 4($fp)
+    lw $t1, 8($fp)
+    bgt $t0, $t1, L12
+    li $t2, 0
+    b L13
+    L12:
+    li $t2, 1
+    L13:
+    beq $t2, $zero, L5
+    li $t0, 1
+    sw $t0, 16($fp)
+    L5:
+    j L4
+    L3:
+    li $t0, 2
+    sw $t0, 16($fp)
+    L4:
+    lw $t0, 12($fp)
+    move $a0, $t0
+    li $v0, 1
+    syscall
+    lw $t0, 16($fp)
+    move $a0, $t0
+    li $v0, 1
+    syscall
+    addiu $sp, $fp, 20
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra

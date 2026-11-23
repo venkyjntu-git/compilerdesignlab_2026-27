@@ -1,0 +1,86 @@
+.text
+.globl main
+f_square:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -4
+    move $sp, $fp
+    sw $a0, 0($fp)
+    lw $t0, 0($fp)
+    lw $t1, 0($fp)
+    mul $t2, $t0, $t1
+    move $v0, $t2
+    j ret_square
+    ret_square:
+    addiu $sp, $fp, 4
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra
+f_half:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -0
+    move $sp, $fp
+    l.d $f0, 8($fp)
+    li.d $f2, 2.0
+    div.d $f4, $f0, $f2
+    mov.d $f0, $f4
+    j ret_half
+    ret_half:
+    addiu $sp, $fp, 0
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra
+main:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -12
+    move $sp, $fp
+    li $t0, 7
+    move $a0, $t0
+    jal f_square
+    move $t0, $v0
+    sw $t0, 0($fp)
+    lw $t0, 0($fp)
+    mtc1 $t0, $f0
+    cvt.d.w $f2, $f0
+    subu $sp, $sp, 8
+    s.d $f2, 0($sp)
+    jal f_half
+    addiu $sp, $sp, 8
+    mov.d $f0, $f0
+    s.d $f0, 4($fp)
+    lw $t0, 0($fp)
+    move $a0, $t0
+    li $v0, 1
+    syscall
+    l.d $f0, 4($fp)
+    mov.d $f12, $f0
+    li $v0, 3
+    syscall
+    li $t0, 2
+    move $a0, $t0
+    jal f_square
+    move $t0, $v0
+    move $a0, $t0
+    jal f_square
+    move $t0, $v0
+    move $a0, $t0
+    li $v0, 1
+    syscall
+    addiu $sp, $fp, 12
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra

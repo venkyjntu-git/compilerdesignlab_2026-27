@@ -1,0 +1,28 @@
+// string and char parameters/results, a call in a loop condition, a void function
+int counter;
+string pick(int k, string yes, string no){
+    if (k > 0)
+        return yes;
+    return no;
+}
+char grade(int score){
+    if (score >= 50)
+        return 'P';
+    return 'F';
+}
+int next(){
+    counter = counter + 1;
+    return counter;
+}
+void show(string label, int v){
+    print label;
+    print v;
+}
+int main(){
+    counter = 0;
+    while (next() < 3) {
+        print grade(counter * 30);
+    }
+    print pick(counter - 3, "pos", "zero");
+    show("n=", counter);
+}

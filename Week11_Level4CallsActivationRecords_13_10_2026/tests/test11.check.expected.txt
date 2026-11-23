@@ -1,0 +1,30 @@
+No type errors found.
+
+Type-checked AST (with any inserted casts):
+Function main
+  Assign
+    Var(a)
+    Const(40,DataType.INT)
+  Assign
+    Var(b)
+    Const(50,DataType.INT)
+  IfElse
+    RelOp(>)
+      Var(a)
+      Var(b)
+    Assign
+      Var(c)
+      BinOp(/)
+        Cast(DataType.DOUBLE)
+          Var(a)
+        Cast(DataType.DOUBLE)
+          Var(b)
+    Assign
+      Var(c)
+      BinOp(/)
+        Cast(DataType.DOUBLE)
+          Var(b)
+        Cast(DataType.DOUBLE)
+          Var(a)
+  Print
+    Var(c)

@@ -1,0 +1,12 @@
+int main(){
+    int n,i,sum;
+    n = 10;
+    i = 1;
+    sum = 0;
+    // Stage 3b: while loop, sum of 1..N
+    while (i <= n) {
+        sum = sum + i;
+        i = i + 1;
+    }
+    print sum;
+}

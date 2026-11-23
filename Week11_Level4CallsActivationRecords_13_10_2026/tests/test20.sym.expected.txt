@@ -1,0 +1,11 @@
+Functions
+  int square(int)   (definition, line 2)
+  double half(double)   (definition, line 5)
+  int main()   (definition, line 8)
+Function square
+  n: DataType.INT (parameter)
+Function half
+  v: DataType.DOUBLE (parameter)
+Function main
+  s: DataType.INT
+  h: DataType.DOUBLE

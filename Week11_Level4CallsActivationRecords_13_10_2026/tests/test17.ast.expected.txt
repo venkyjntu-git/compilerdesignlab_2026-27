@@ -1,0 +1,16 @@
+Function printSquareOfFive
+  Assign
+    Var(x)
+    Const(5,DataType.INT)
+  Print
+    BinOp(*)
+      Var(x)
+      Var(x)
+Function main
+  Assign
+    Var(x)
+    Const(1,DataType.INT)
+  Call(printSquareOfFive)
+  Call(printSquareOfFive)
+  Print
+    Var(x)

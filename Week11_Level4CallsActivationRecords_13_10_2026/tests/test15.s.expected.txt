@@ -1,0 +1,80 @@
+.data
+Lstr0: .asciiz "nonzero"
+Lstr1: .asciiz "wrong"
+Lstr2: .asciiz "zero"
+.text
+.globl main
+main:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -12
+    move $sp, $fp
+    li.d $f0, 10.0
+    s.d $f0, 0($fp)
+    li $t0, 0
+    sw $t0, 8($fp)
+    L0:
+    l.d $f0, 0($fp)
+    li.d $f2, 1.0
+    c.lt.d $f2, $f0
+    bc1t L5
+    li $t0, 0
+    b L6
+    L5:
+    li $t0, 1
+    L6:
+    beq $t0, $zero, L1
+    l.d $f0, 0($fp)
+    li.d $f2, 2.0
+    div.d $f4, $f0, $f2
+    s.d $f4, 0($fp)
+    lw $t0, 8($fp)
+    li $t1, 1
+    add $t2, $t0, $t1
+    sw $t2, 8($fp)
+    j L0
+    L1:
+    lw $t0, 8($fp)
+    move $a0, $t0
+    li $v0, 1
+    syscall
+    l.d $f0, 0($fp)
+    mov.d $f12, $f0
+    li $v0, 3
+    syscall
+    l.d $f0, 0($fp)
+    li.d $f2, 0.0
+    c.eq.d $f0, $f2
+    bc1t L2
+    la $t0, Lstr0
+    move $a0, $t0
+    li $v0, 4
+    syscall
+    L2:
+    l.d $f0, 0($fp)
+    l.d $f2, 0($fp)
+    sub.d $f4, $f0, $f2
+    s.d $f4, 0($fp)
+    l.d $f0, 0($fp)
+    li.d $f2, 0.0
+    c.eq.d $f0, $f2
+    bc1t L3
+    la $t0, Lstr1
+    move $a0, $t0
+    li $v0, 4
+    syscall
+    j L4
+    L3:
+    la $t0, Lstr2
+    move $a0, $t0
+    li $v0, 4
+    syscall
+    L4:
+    addiu $sp, $fp, 12
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra

@@ -1,0 +1,24 @@
+(0) d = 10.0
+(1) steps = 0
+(2) L0:
+(3) > d, 1.0 : cmp DOUBLE
+(4) if_false (3) goto L1 : INT
+(5) / d, 2.0 : DOUBLE
+(6) d = (5)
+(7) + steps, 1 : INT
+(8) steps = (7)
+(9) goto L0
+(10) L1:
+(11) PRINT steps
+(12) PRINT d
+(13) if_false d goto L2 : DOUBLE
+(14) PRINT "nonzero"
+(15) L2:
+(16) - d, d : DOUBLE
+(17) d = (16)
+(18) if_false d goto L3 : DOUBLE
+(19) PRINT "wrong"
+(20) goto L4
+(21) L3:
+(22) PRINT "zero"
+(23) L4:

@@ -1,0 +1,61 @@
+function weighted:
+(0) + a, b : INT
+(1) + (0), c : INT
+(2) + (1), d : INT
+(3) + (2), e : INT
+(4) CAST(DOUBLE) (3) : from INT
+(5) * w, (4) : DOUBLE
+(6) RETURN (5) : DOUBLE
+function sum6:
+(0) + a, b : INT
+(1) + (0), c : INT
+(2) + (1), d : INT
+(3) + (2), e : INT
+(4) + (3), f : INT
+(5) RETURN (4) : INT
+function main:
+(0) * 10, 3 : INT
+(1) PARAM 1 : INT
+(2) PARAM 2 : INT
+(3) PARAM 3 : INT
+(4) PARAM 4 : INT
+(5) PARAM 5 : INT
+(6) PARAM 6 : INT
+(7) CALL sum6, 6 : INT
+(8) + (0), (7) : INT
+(9) x = (8)
+(10) > x, 0 : cmp INT
+(11) (10) ? 1.5 : 2.5 : DOUBLE
+(12) PARAM 1 : INT
+(13) PARAM 0.5 : DOUBLE
+(14) PARAM 2 : INT
+(15) PARAM 3 : INT
+(16) PARAM 4 : INT
+(17) PARAM 5 : INT
+(18) CALL weighted, 6 : DOUBLE
+(19) + (11), (18) : DOUBLE
+(20) y = (19)
+(21) PRINT x
+(22) PRINT y
+(23) PARAM 1 : INT
+(24) PARAM 1 : INT
+(25) PARAM 1 : INT
+(26) PARAM 1 : INT
+(27) PARAM 1 : INT
+(28) PARAM 1 : INT
+(29) CALL sum6, 6 : INT
+(30) PARAM 0 : INT
+(31) PARAM 0 : INT
+(32) PARAM 0 : INT
+(33) PARAM 0 : INT
+(34) PARAM 0 : INT
+(35) PARAM 1 : INT
+(36) CALL sum6, 6 : INT
+(37) PARAM (29) : INT
+(38) PARAM 2 : INT
+(39) PARAM 3 : INT
+(40) PARAM 4 : INT
+(41) PARAM 5 : INT
+(42) PARAM (36) : INT
+(43) CALL sum6, 6 : INT
+(44) PRINT (43)

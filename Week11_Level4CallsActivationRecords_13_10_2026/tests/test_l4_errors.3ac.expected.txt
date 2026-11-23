@@ -1,0 +1,14 @@
+# 13 type error(s) found -- cannot proceed:
+# line 2: function 'twice' declared but never defined
+# line 3: prototype of 'half' does not match its definition
+# line 6: return with a value in void function 'hello'
+# line 9: cannot return DataType.STRING from function 'add' returning DataType.INT
+# line 11: function 'add' defined more than once
+# line 17: parameter 1 of 'noName' has no name
+# line 20: duplicate parameter 'a' in 'dup'
+# line 23: local variable 'p' in 'shadow' redeclares a parameter
+# line 29: function 'add' expects 2 argument(s), got 1
+# line 30: argument 2 of 'add': cannot pass DataType.STRING as DataType.INT
+# line 31: void function 'hello' used in an expression
+# line 32: call to undefined function 'nothing'
+# line 34: return without a value in function 'main' returning DataType.INT

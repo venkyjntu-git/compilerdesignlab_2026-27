@@ -1,0 +1,24 @@
+// Stage 4b: scopes (global / parameter / local), void return, return inside a loop
+int count;
+void bump(){
+    count = count + 1;          // the GLOBAL count
+    return;
+}
+int firstMultipleOf(int k, int limit){
+    int i;
+    i = 1;
+    while (i <= limit) {
+        if (i / k * k == i)
+            return i;           // leaves the function from inside the loop
+        i = i + 1;
+    }
+    return 0;
+}
+int main(){
+    int count;                  // a local hides the global of the same name
+    count = 100;
+    bump();
+    bump();
+    print count;
+    print firstMultipleOf(4, 10);
+}

@@ -1,0 +1,24 @@
+function main:
+(0) PARAM 30 : INT
+(1) PARAM 40 : INT
+(2) CALL add, 2 : INT
+(3) c = (2)
+(4) PARAM 40.8 : DOUBLE
+(5) PARAM 50.2 : DOUBLE
+(6) CALL mult, 2 : DOUBLE
+(7) d = (6)
+(8) - 0, 5 : INT
+(9) a = (8)
+(10) - 0, 45 : INT
+(11) b = (10)
+(12) PARAM a : INT
+(13) PARAM b : INT
+(14) CALL add, 2 : INT
+(15) c = (14)
+(16) PRINT c
+function add:
+(0) + a1, a2 : INT
+(1) RETURN (0) : INT
+function mult:
+(0) * m1, m2 : DOUBLE
+(1) RETURN (0) : DOUBLE

@@ -1,0 +1,13 @@
+(0) a = 7
+(1) b = 3
+(2) c = 10
+(3) > a, b : cmp INT
+(4) > b, c : cmp INT
+(5) (4) ? 1.5 : 2.5 : DOUBLE
+(6) CAST(DOUBLE) c : from INT
+(7) (3) ? (5) : (6) : DOUBLE
+(8) d = (7)
+(9) PRINT d
+(10) CAST(DOUBLE) a : from INT
+(11) CAST(INT) (10) : from DOUBLE
+(12) PRINT (11)

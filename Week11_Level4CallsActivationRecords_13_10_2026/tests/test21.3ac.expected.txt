@@ -1,0 +1,29 @@
+function bump:
+(0) + count, 1 : INT
+(1) count = (0)
+(2) RETURN
+function firstMultipleOf:
+(0) i = 1
+(1) L0:
+(2) <= i, limit : cmp INT
+(3) if_false (2) goto L1 : INT
+(4) / i, k : INT
+(5) * (4), k : INT
+(6) == (5), i : cmp INT
+(7) if_false (6) goto L2 : INT
+(8) RETURN i : INT
+(9) L2:
+(10) + i, 1 : INT
+(11) i = (10)
+(12) goto L0
+(13) L1:
+(14) RETURN 0 : INT
+function main:
+(0) count = 100
+(1) CALL bump, 0 : VOID
+(2) CALL bump, 0 : VOID
+(3) PRINT count
+(4) PARAM 4 : INT
+(5) PARAM 10 : INT
+(6) CALL firstMultipleOf, 2 : INT
+(7) PRINT (6)

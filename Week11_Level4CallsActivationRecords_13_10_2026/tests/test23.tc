@@ -1,0 +1,16 @@
+// more than four arguments, double arguments (stack), and caller-saved temporaries
+double weighted(int a, double w, int b, int c, int d, int e){
+    return w * (a + b + c + d + e);
+}
+int sum6(int a, int b, int c, int d, int e, int f){
+    return a + b + c + d + e + f;
+}
+int main(){
+    int x;
+    double y;
+    x = 10 * 3 + sum6(1, 2, 3, 4, 5, 6);      // 30 sits in a $t register across the call
+    y = ((x > 0) ? 1.5 : 2.5) + weighted(1, 0.5, 2, 3, 4, 5);   // 1.5 sits in $f0 -- where the result comes back
+    print x;
+    print y;
+    print sum6(sum6(1, 1, 1, 1, 1, 1), 2, 3, 4, 5, sum6(0, 0, 0, 0, 0, 1));
+}

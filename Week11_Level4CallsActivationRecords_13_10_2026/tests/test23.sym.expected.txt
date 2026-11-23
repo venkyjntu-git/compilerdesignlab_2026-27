@@ -1,0 +1,21 @@
+Functions
+  double weighted(int, double, int, int, int, int)   (definition, line 2)
+  int sum6(int, int, int, int, int, int)   (definition, line 5)
+  int main()   (definition, line 8)
+Function weighted
+  a: DataType.INT (parameter)
+  w: DataType.DOUBLE (parameter)
+  b: DataType.INT (parameter)
+  c: DataType.INT (parameter)
+  d: DataType.INT (parameter)
+  e: DataType.INT (parameter)
+Function sum6
+  a: DataType.INT (parameter)
+  b: DataType.INT (parameter)
+  c: DataType.INT (parameter)
+  d: DataType.INT (parameter)
+  e: DataType.INT (parameter)
+  f: DataType.INT (parameter)
+Function main
+  x: DataType.INT
+  y: DataType.DOUBLE

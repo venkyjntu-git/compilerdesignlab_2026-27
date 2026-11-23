@@ -1,0 +1,6 @@
+# 5 type error(s) found -- cannot proceed:
+# line 6: undeclared variable 'c'
+# line 7: cannot compare DataType.STRING and DataType.INT
+# line 8: ternary branches have incompatible types: DataType.STRING and DataType.INT
+# line 9: cannot cast DataType.STRING to DataType.DOUBLE
+# line 10: cannot assign DataType.INT to variable 's' of type DataType.STRING

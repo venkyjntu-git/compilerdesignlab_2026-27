@@ -1,0 +1,8 @@
+(0) a = 5
+(1) b = 10
+(2) c = 'x'
+(3) s = "hello"
+(4) < a, b : cmp INT
+(5) PRINT (4)
+(6) PRINT c
+(7) PRINT s

@@ -1,0 +1,9 @@
+function printSquareOfFive:
+(0) x = 5
+(1) * x, x : INT
+(2) PRINT (1)
+function main:
+(0) x = 1
+(1) CALL printSquareOfFive, 0 : VOID
+(2) CALL printSquareOfFive, 0 : VOID
+(3) PRINT x

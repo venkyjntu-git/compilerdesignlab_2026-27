@@ -1,0 +1,44 @@
+.text
+.globl main
+f_printSquareOfFive:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -4
+    move $sp, $fp
+    li $t0, 5
+    sw $t0, 0($fp)
+    lw $t0, 0($fp)
+    lw $t1, 0($fp)
+    mul $t2, $t0, $t1
+    move $a0, $t2
+    li $v0, 1
+    syscall
+    addiu $sp, $fp, 4
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra
+main:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -4
+    move $sp, $fp
+    li $t0, 1
+    sw $t0, 0($fp)
+    jal f_printSquareOfFive
+    jal f_printSquareOfFive
+    lw $t0, 0($fp)
+    move $a0, $t0
+    li $v0, 1
+    syscall
+    addiu $sp, $fp, 4
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra
