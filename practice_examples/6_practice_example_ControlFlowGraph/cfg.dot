@@ -1,0 +1,16 @@
+digraph CFG {
+  node [shape=box, fontname=Courier];
+  B0 [label="B0\n(0) n = 10\l(1) i = 1\l(2) s = 0\l"];
+  B1 [label="B1\n(3) L0:\l(4) <= i, n\l(5) if_false (4) goto L1\l"];
+  B2 [label="B2\n(6) > i, 5\l(7) if_false (6) goto L2\l"];
+  B3 [label="B3\n(8) + s, i\l(9) s = (8)\l"];
+  B4 [label="B4\n(10) L2:\l(11) + i, 1\l(12) i = (11)\l(13) goto L0\l"];
+  B5 [label="B5\n(14) L1:\l(15) PRINT s\l"];
+  B0 -> B1;
+  B1 -> B5 [label="false"];
+  B1 -> B2 [label="true"];
+  B2 -> B4 [label="false"];
+  B2 -> B3 [label="true"];
+  B3 -> B4;
+  B4 -> B1;
+}
