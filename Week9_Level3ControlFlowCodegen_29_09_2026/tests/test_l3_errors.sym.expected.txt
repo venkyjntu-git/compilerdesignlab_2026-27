@@ -1,0 +1,5 @@
+Global
+  g: DataType.INT
+  s: DataType.STRING
+Function main
+  a: DataType.INT

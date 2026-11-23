@@ -1,0 +1,19 @@
+int main(){
+    int i,j,total;
+    total = 0;
+    i = 1;
+    // a while nested inside a while
+    while (i <= 3) {
+        j = 1;
+        while (j <= i) {
+            total = total + i * j;
+            j = j + 1;
+        }
+        i = i + 1;
+    }
+    print total;
+    // edge cases: a loop whose body never runs, and empty blocks
+    while (total < 0) { }
+    if (total == 25) { } else print 0;
+    print i;
+}

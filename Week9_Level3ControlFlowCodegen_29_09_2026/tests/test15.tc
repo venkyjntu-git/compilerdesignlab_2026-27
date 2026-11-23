@@ -1,0 +1,22 @@
+int main(){
+    double d;
+    int steps;
+    d = 10.0;
+    steps = 0;
+    // a DOUBLE comparison as a loop condition
+    while (d > 1.0) {
+        d = d / 2.0;
+        steps = steps + 1;
+    }
+    print steps;
+    print d;
+    // a DOUBLE value used directly as a condition (non-zero = true)
+    if (d)
+        print "nonzero";
+    // ... and a double condition that IS zero (the jump is taken)
+    d = d - d;
+    if (d)
+        print "wrong";
+    else
+        print "zero";
+}

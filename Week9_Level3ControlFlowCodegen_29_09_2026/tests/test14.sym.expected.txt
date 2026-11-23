@@ -1,0 +1,6 @@
+Global
+  avg: DataType.DOUBLE
+  level: DataType.STRING
+Function main
+  total: DataType.INT
+  count: DataType.INT

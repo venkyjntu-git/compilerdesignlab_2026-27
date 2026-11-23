@@ -1,0 +1,6 @@
+Global
+  a: DataType.INT
+  b: DataType.INT
+  c: DataType.DOUBLE
+Function main
+  (no local variables)

@@ -1,0 +1,21 @@
+double avg;
+string level;
+int main(){
+    int total,count;
+    total = 0;
+    count = 0;
+    while (count < 4) {
+        count = count + 1;
+        total = total + count * 10;
+    }
+    avg = (double)total / count;
+    // an else-if chain is just a dangling else used on purpose
+    if (avg >= 30.0)
+        level = "high";
+    else if (avg >= 20.0)
+        level = "medium";
+    else
+        level = "low";
+    print avg;
+    print level;
+}

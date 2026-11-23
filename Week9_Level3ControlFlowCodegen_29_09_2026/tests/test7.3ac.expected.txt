@@ -1,0 +1,17 @@
+(0) a = 5
+(1) b = 10
+(2) c = 3.14
+(3) CAST(DOUBLE) a : from INT
+(4) d = (3)
+(5) e = 'x'
+(6) s = "hello"
+(7) > a, b : cmp INT
+(8) CAST(DOUBLE) a : from INT
+(9) CAST(DOUBLE) b : from INT
+(10) / (8), (9) : DOUBLE
+(11) (7) ? (10) : c : DOUBLE
+(12) d = (11)
+(13) PRINT d
+(14) == a, b : cmp INT
+(15) PRINT (14)
+(16) PRINT s

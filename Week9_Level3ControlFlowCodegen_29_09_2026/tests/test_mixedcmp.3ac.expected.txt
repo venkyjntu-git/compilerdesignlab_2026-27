@@ -1,0 +1,17 @@
+(0) i = 2
+(1) d = 2.5
+(2) CAST(DOUBLE) i : from INT
+(3) < (2), d : cmp DOUBLE
+(4) PRINT (3)
+(5) CAST(DOUBLE) i : from INT
+(6) > d, (5) : cmp DOUBLE
+(7) PRINT (6)
+(8) CAST(DOUBLE) i : from INT
+(9) < (8), 2.5 : cmp DOUBLE
+(10) if_false (9) goto L0 : INT
+(11) PRINT 7
+(12) L0:
+(13) == i, 2 : cmp INT
+(14) CAST(DOUBLE) i : from INT
+(15) (13) ? 1.5 : (14) : DOUBLE
+(16) PRINT (15)

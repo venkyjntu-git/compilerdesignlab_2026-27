@@ -1,0 +1,8 @@
+int main(){
+    int a,b,x;
+    a = 2;
+    b = 3;
+    // 6 products and 5 sums: 11 temporaries in ONE statement
+    x = a*b + a*b + a*b + a*b + a*b + a*b;
+    print x;
+}

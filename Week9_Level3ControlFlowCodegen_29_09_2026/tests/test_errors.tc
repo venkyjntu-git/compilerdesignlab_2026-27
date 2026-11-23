@@ -1,0 +1,11 @@
+int main(){
+    int a;
+    string s;
+    a = 5;
+    s = "hi";
+    c = a;
+    print (s < a);
+    print (a ? s : a);
+    a = (double)s;
+    s = a;
+}
