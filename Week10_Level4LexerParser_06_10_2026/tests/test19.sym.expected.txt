@@ -1,0 +1,21 @@
+Global
+  a: DataType.INT
+  b: DataType.INT
+  c: DataType.INT
+  d: DataType.DOUBLE
+  e: DataType.DOUBLE
+  f: DataType.DOUBLE
+Functions
+  int add(int, int);   (prototype, line 3)
+  double mult(double, double);   (prototype, line 4)
+  int main()   (definition, line 5)
+  int add(int, int)   (definition, line 13)
+  double mult(double, double)   (definition, line 16)
+Function main
+  (no local variables)
+Function add
+  a1: DataType.INT (parameter)
+  a2: DataType.INT (parameter)
+Function mult
+  m1: DataType.DOUBLE (parameter)
+  m2: DataType.DOUBLE (parameter)

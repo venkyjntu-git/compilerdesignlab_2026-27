@@ -1,0 +1,11 @@
+int a,b;
+double c;
+int main(){
+    a=40;
+    b=50;
+    if(a>b)
+        c=(double)a/b;
+    else
+        c=(double)b/a;
+    print c;
+}

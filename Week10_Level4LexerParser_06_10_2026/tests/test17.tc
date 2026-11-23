@@ -1,0 +1,13 @@
+// Stage 4a: a helper with no parameters and no return value
+void printSquareOfFive(){
+    int x;
+    x = 5;
+    print x * x;
+}
+int main(){
+    int x;              // a DIFFERENT x: each function has its own local scope
+    x = 1;
+    printSquareOfFive();
+    printSquareOfFive();
+    print x;
+}

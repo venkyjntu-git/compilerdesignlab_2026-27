@@ -1,0 +1,85 @@
+.text
+.globl main
+main:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -12
+    move $sp, $fp
+    li $t0, 2
+    sw $t0, 0($fp)
+    li.d $f0, 2.5
+    s.d $f0, 4($fp)
+    lw $t0, 0($fp)
+    mtc1 $t0, $f0
+    cvt.d.w $f2, $f0
+    l.d $f0, 4($fp)
+    c.lt.d $f2, $f0
+    bc1t L1
+    li $t0, 0
+    b L2
+    L1:
+    li $t0, 1
+    L2:
+    move $a0, $t0
+    li $v0, 1
+    syscall
+    lw $t0, 0($fp)
+    mtc1 $t0, $f0
+    cvt.d.w $f2, $f0
+    l.d $f0, 4($fp)
+    c.lt.d $f2, $f0
+    bc1t L3
+    li $t0, 0
+    b L4
+    L3:
+    li $t0, 1
+    L4:
+    move $a0, $t0
+    li $v0, 1
+    syscall
+    lw $t0, 0($fp)
+    mtc1 $t0, $f0
+    cvt.d.w $f2, $f0
+    li.d $f0, 2.5
+    c.lt.d $f2, $f0
+    bc1t L5
+    li $t0, 0
+    b L6
+    L5:
+    li $t0, 1
+    L6:
+    beq $t0, $zero, L0
+    li $t0, 7
+    move $a0, $t0
+    li $v0, 1
+    syscall
+    L0:
+    lw $t0, 0($fp)
+    li $t1, 2
+    beq $t0, $t1, L7
+    li $t2, 0
+    b L8
+    L7:
+    li $t2, 1
+    L8:
+    lw $t0, 0($fp)
+    mtc1 $t0, $f0
+    cvt.d.w $f2, $f0
+    bne $t2, $zero, L9
+    mov.d $f0, $f2
+    b L10
+    L9:
+    li.d $f2, 1.5
+    mov.d $f0, $f2
+    L10:
+    mov.d $f12, $f0
+    li $v0, 3
+    syscall
+    addiu $sp, $fp, 12
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra

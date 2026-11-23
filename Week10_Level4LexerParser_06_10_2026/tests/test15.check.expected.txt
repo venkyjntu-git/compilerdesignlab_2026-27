@@ -1,0 +1,44 @@
+No type errors found.
+
+Type-checked AST (with any inserted casts):
+Function main
+  Assign
+    Var(d)
+    Const(10.0,DataType.DOUBLE)
+  Assign
+    Var(steps)
+    Const(0,DataType.INT)
+  While
+    RelOp(>)
+      Var(d)
+      Const(1.0,DataType.DOUBLE)
+    Block
+      Assign
+        Var(d)
+        BinOp(/)
+          Var(d)
+          Const(2.0,DataType.DOUBLE)
+      Assign
+        Var(steps)
+        BinOp(+)
+          Var(steps)
+          Const(1,DataType.INT)
+  Print
+    Var(steps)
+  Print
+    Var(d)
+  If
+    Var(d)
+    Print
+      Const(nonzero,DataType.STRING)
+  Assign
+    Var(d)
+    BinOp(-)
+      Var(d)
+      Var(d)
+  IfElse
+    Var(d)
+    Print
+      Const(wrong,DataType.STRING)
+    Print
+      Const(zero,DataType.STRING)

@@ -1,0 +1,6 @@
+Function main
+  a: DataType.INT
+  b: DataType.INT
+  c: DataType.INT
+  x: DataType.INT
+  y: DataType.INT

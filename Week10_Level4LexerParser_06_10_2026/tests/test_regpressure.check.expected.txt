@@ -1,0 +1,37 @@
+No type errors found.
+
+Type-checked AST (with any inserted casts):
+Function main
+  Assign
+    Var(a)
+    Const(2,DataType.INT)
+  Assign
+    Var(b)
+    Const(3,DataType.INT)
+  Assign
+    Var(x)
+    BinOp(+)
+      BinOp(+)
+        BinOp(+)
+          BinOp(+)
+            BinOp(+)
+              BinOp(*)
+                Var(a)
+                Var(b)
+              BinOp(*)
+                Var(a)
+                Var(b)
+            BinOp(*)
+              Var(a)
+              Var(b)
+          BinOp(*)
+            Var(a)
+            Var(b)
+        BinOp(*)
+          Var(a)
+          Var(b)
+      BinOp(*)
+        Var(a)
+        Var(b)
+  Print
+    Var(x)

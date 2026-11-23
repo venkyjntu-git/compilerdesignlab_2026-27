@@ -1,0 +1,16 @@
+// Stage 4b: parameters, return values, implicit conversion of arguments
+int square(int n){
+    return n * n;
+}
+double half(double v){
+    return v / 2.0;
+}
+int main(){
+    int s;
+    double h;
+    s = square(7);
+    h = half(s);                // int argument -> double parameter: a Cast is inserted
+    print s;
+    print h;
+    print square(square(2));    // a call as an argument of a call
+}

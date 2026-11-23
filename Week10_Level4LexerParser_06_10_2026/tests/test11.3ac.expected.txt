@@ -1,0 +1,16 @@
+(0) a = 40
+(1) b = 50
+(2) > a, b : cmp INT
+(3) if_false (2) goto L0 : INT
+(4) CAST(DOUBLE) a : from INT
+(5) CAST(DOUBLE) b : from INT
+(6) / (4), (5) : DOUBLE
+(7) c = (6)
+(8) goto L1
+(9) L0:
+(10) CAST(DOUBLE) b : from INT
+(11) CAST(DOUBLE) a : from INT
+(12) / (10), (11) : DOUBLE
+(13) c = (12)
+(14) L1:
+(15) PRINT c

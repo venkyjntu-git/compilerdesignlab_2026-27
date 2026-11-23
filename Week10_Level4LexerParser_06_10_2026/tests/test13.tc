@@ -1,0 +1,23 @@
+int main(){
+    int a,b,c,x,y;
+    a = 5;
+    b = 3;
+    c = 7;
+    x = 0;
+    y = 0;
+    // dangling else: the else binds to the NEAREST if (the inner one)
+    if (a > b)
+        if (b > c)
+            x = 1;
+        else
+            x = 2;
+    // braces force the else onto the OUTER if instead
+    if (a > b) {
+        if (b > c)
+            y = 1;
+    }
+    else
+        y = 2;
+    print x;
+    print y;
+}

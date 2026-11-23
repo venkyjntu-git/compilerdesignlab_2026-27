@@ -1,0 +1,33 @@
+Global
+  g: DataType.INT
+Functions
+  int twice(int);   (prototype, line 2)
+  double half(double);   (prototype, line 3)
+  void hello()   (definition, line 4)
+  int add(int, int)   (definition, line 8)
+  int add(int, int)   (definition, line 11)
+  int half(int)   (definition, line 14)
+  int noName(int, int)   (definition, line 17)
+  int dup(int, int)   (definition, line 20)
+  int shadow(int)   (definition, line 23)
+  int main()   (definition, line 27)
+Function hello
+  (no local variables)
+Function add
+  a: DataType.INT (parameter)
+  b: DataType.INT (parameter)
+Function add
+  a: DataType.INT (parameter)
+  b: DataType.INT (parameter)
+Function half
+  v: DataType.INT (parameter)
+Function noName
+  b: DataType.INT (parameter)
+Function dup
+  a: DataType.INT (parameter)
+  a: DataType.INT (parameter)
+Function shadow
+  p: DataType.INT (parameter)
+  p: DataType.INT
+Function main
+  x: DataType.INT

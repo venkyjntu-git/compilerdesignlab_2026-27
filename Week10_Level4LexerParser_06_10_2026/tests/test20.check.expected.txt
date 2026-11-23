@@ -1,0 +1,31 @@
+No type errors found.
+
+Type-checked AST (with any inserted casts):
+Function square
+  Return
+    BinOp(*)
+      Var(n)
+      Var(n)
+Function half
+  Return
+    BinOp(/)
+      Var(v)
+      Const(2.0,DataType.DOUBLE)
+Function main
+  Assign
+    Var(s)
+    Call(square)
+      Const(7,DataType.INT)
+  Assign
+    Var(h)
+    Call(half)
+      Cast(DataType.DOUBLE)
+        Var(s)
+  Print
+    Var(s)
+  Print
+    Var(h)
+  Print
+    Call(square)
+      Call(square)
+        Const(2,DataType.INT)

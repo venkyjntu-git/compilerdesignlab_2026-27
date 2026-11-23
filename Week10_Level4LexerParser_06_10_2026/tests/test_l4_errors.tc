@@ -1,0 +1,35 @@
+int g;
+int twice(int);
+double half(double);
+void hello(){
+    print "hi";
+    return 1;
+}
+int add(int a, int b){
+    return "sum";
+}
+int add(int a, int b){
+    return a + b;
+}
+int half(int v){
+    return v / 2;
+}
+int noName(int, int b){
+    return b;
+}
+int dup(int a, int a){
+    return a;
+}
+int shadow(int p){
+    int p;
+    return p;
+}
+int main(){
+    int x;
+    x = add(1);
+    x = add(1, "two");
+    x = hello();
+    x = nothing();
+    x = add(2.5, 1);
+    return;
+}

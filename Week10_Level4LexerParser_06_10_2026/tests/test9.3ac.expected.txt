@@ -1,0 +1,14 @@
+(0) a = 5
+(1) b = 10
+(2) < a, b : cmp INT
+(3) PRINT (2)
+(4) > a, b : cmp INT
+(5) PRINT (4)
+(6) <= a, b : cmp INT
+(7) PRINT (6)
+(8) >= a, b : cmp INT
+(9) PRINT (8)
+(10) == a, b : cmp INT
+(11) PRINT (10)
+(12) != a, b : cmp INT
+(13) PRINT (12)

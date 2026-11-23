@@ -1,0 +1,9 @@
+1 type error(s) found:
+  program has no 'main' function
+
+Type-checked AST (with any inserted casts):
+Function helper
+  Print
+    Const(1,DataType.INT)
+Function other
+  Call(helper)

@@ -1,0 +1,15 @@
+int main(){
+    int a,b,flag;
+    a = 50;
+    b = 40;
+    flag = 0;
+    // Stage 3a: a plain if guarding ONE statement
+    if (a > b)
+        flag = 1;
+    print flag;
+    // Stage 3a: a plain if guarding a BLOCK of statements
+    if (a != b) {
+        a = a - b;
+        print a;
+    }
+}

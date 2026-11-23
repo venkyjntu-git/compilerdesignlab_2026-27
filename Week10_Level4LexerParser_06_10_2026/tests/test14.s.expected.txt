@@ -1,0 +1,96 @@
+.data
+.align 3
+g_avg: .double 0.0
+g_level: .word 0
+Lstr0: .asciiz "high"
+Lstr1: .asciiz "medium"
+Lstr2: .asciiz "low"
+.text
+.globl main
+main:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -8
+    move $sp, $fp
+    li $t0, 0
+    sw $t0, 0($fp)
+    li $t0, 0
+    sw $t0, 4($fp)
+    L0:
+    lw $t0, 4($fp)
+    li $t1, 4
+    blt $t0, $t1, L6
+    li $t2, 0
+    b L7
+    L6:
+    li $t2, 1
+    L7:
+    beq $t2, $zero, L1
+    lw $t0, 4($fp)
+    li $t1, 1
+    add $t2, $t0, $t1
+    sw $t2, 4($fp)
+    lw $t0, 4($fp)
+    li $t1, 10
+    mul $t2, $t0, $t1
+    lw $t0, 0($fp)
+    add $t1, $t0, $t2
+    sw $t1, 0($fp)
+    j L0
+    L1:
+    lw $t0, 0($fp)
+    mtc1 $t0, $f0
+    cvt.d.w $f2, $f0
+    lw $t0, 4($fp)
+    mtc1 $t0, $f0
+    cvt.d.w $f4, $f0
+    div.d $f0, $f2, $f4
+    s.d $f0, g_avg
+    l.d $f0, g_avg
+    li.d $f2, 30.0
+    c.le.d $f2, $f0
+    bc1t L8
+    li $t0, 0
+    b L9
+    L8:
+    li $t0, 1
+    L9:
+    beq $t0, $zero, L2
+    la $t0, Lstr0
+    sw $t0, g_level
+    j L3
+    L2:
+    l.d $f0, g_avg
+    li.d $f2, 20.0
+    c.le.d $f2, $f0
+    bc1t L10
+    li $t0, 0
+    b L11
+    L10:
+    li $t0, 1
+    L11:
+    beq $t0, $zero, L4
+    la $t0, Lstr1
+    sw $t0, g_level
+    j L5
+    L4:
+    la $t0, Lstr2
+    sw $t0, g_level
+    L5:
+    L3:
+    l.d $f0, g_avg
+    mov.d $f12, $f0
+    li $v0, 3
+    syscall
+    lw $t0, g_level
+    move $a0, $t0
+    li $v0, 4
+    syscall
+    addiu $sp, $fp, 8
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra

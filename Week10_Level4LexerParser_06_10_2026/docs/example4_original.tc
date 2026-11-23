@@ -1,0 +1,15 @@
+int a,b,c;
+double d,e,f,;
+int add(int,int);  //declaration of function
+double mult(double,double);
+int main(){
+     c=add(30,40);
+     d=mult(40.8,50.2);
+     a=-5;
+     b=-45;
+    c= add(a,b);
+    print c;
+}
+Int add(int a1, int a2){
+return a+b;
+}

@@ -1,0 +1,19 @@
+No type errors found.
+
+Type-checked AST (with any inserted casts):
+Function printSquareOfFive
+  Assign
+    Var(x)
+    Const(5,DataType.INT)
+  Print
+    BinOp(*)
+      Var(x)
+      Var(x)
+Function main
+  Assign
+    Var(x)
+    Const(1,DataType.INT)
+  Call(printSquareOfFive)
+  Call(printSquareOfFive)
+  Print
+    Var(x)

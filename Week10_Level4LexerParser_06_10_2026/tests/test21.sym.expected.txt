@@ -1,0 +1,14 @@
+Global
+  count: DataType.INT
+Functions
+  void bump()   (definition, line 3)
+  int firstMultipleOf(int, int)   (definition, line 7)
+  int main()   (definition, line 17)
+Function bump
+  (no local variables)
+Function firstMultipleOf
+  k: DataType.INT (parameter)
+  limit: DataType.INT (parameter)
+  i: DataType.INT
+Function main
+  count: DataType.INT
