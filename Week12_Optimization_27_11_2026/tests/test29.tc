@@ -1,0 +1,25 @@
+// dead code elimination (liveness), and what calls and globals must keep alive
+int total;
+void bump(){
+    total = total + 1;
+}
+int compute(int n){
+    int unused,t,k,m;
+    unused = n * 100;       // dead: never read
+    t = n * 2;              // dead: overwritten before it is read
+    t = n + 1;
+    k = total * 2;
+    bump();                 // may change total: total * 2 is NOT available below
+    m = total * 2;
+    return t + k + m;
+}
+int main(){
+    int x,y;
+    total = 10;
+    y = 99;                 // dead
+    x = compute(4);
+    print x + 1;
+    x = compute(0);         // x is never read again: the assignment is dead,
+                            // but the CALL must stay -- it changes total
+    print total;
+}

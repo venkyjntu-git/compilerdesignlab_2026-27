@@ -1,0 +1,44 @@
+// TinyCStr -- the integrated demo: every language level in one program
+int calls;                                  // Level 3: a global
+
+double average(int total, int count){       // Level 4: parameters, a double result
+    calls = calls + 1;
+    return (double)total / count;           // Level 2: a cast
+}
+
+int sumTo(int n){                           // Level 3: a loop
+    int i,s;
+    s = 0;
+    i = 1;
+    while (i <= n) {
+        s = s + i;
+        i = i + 1;
+    }
+    return s;
+}
+
+int fact(int n){                            // Level 4: recursion
+    if (n <= 1)
+        return 1;
+    return n * fact(n - 1);
+}
+
+int main(){
+    int a,b,s,unused;
+    double avg;
+    string verdict;
+    a = 2 * 3 + 4;                          // Level 1 -- and constant folding: 10
+    b = a * 2;                              // copy propagation + folding: 20
+    unused = a * b;                         // dead code: never read
+    s = sumTo(a);                           // 55
+    avg = average(s, a);                    // 5.5
+    verdict = (avg > 5.0) ? "high" : "low"; // Level 2: ternary, double comparison, strings
+    print s;
+    print avg;
+    print verdict;
+    if (fact(5) == 120)                     // Level 3 + chars
+        print 'Y';
+    else
+        print 'N';
+    print calls;
+}

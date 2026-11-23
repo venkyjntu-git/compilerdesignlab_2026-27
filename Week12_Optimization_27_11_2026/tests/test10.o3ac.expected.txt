@@ -1,0 +1,13 @@
+(0) a = 50
+(1) b = 40
+(2) flag = 0
+(3) if_false 1 goto L0 : INT
+(4) flag = 1
+(5) L0:
+(6) PRINT flag
+(7) != a, b : cmp INT
+(8) if_false (7) goto L1 : INT
+(9) - a, b : INT
+(10) a = (9)
+(11) PRINT a
+(12) L1:

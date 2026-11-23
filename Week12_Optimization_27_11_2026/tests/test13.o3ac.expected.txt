@@ -1,0 +1,26 @@
+(0) a = 5
+(1) b = 3
+(2) c = 7
+(3) x = 0
+(4) y = 0
+(5) if_false 1 goto L0 : INT
+(6) > b, c : cmp INT
+(7) if_false (6) goto L1 : INT
+(8) x = 1
+(9) goto L2
+(10) L1:
+(11) x = 2
+(12) L2:
+(13) L0:
+(14) > a, b : cmp INT
+(15) if_false (14) goto L3 : INT
+(16) > b, c : cmp INT
+(17) if_false (16) goto L5 : INT
+(18) y = 1
+(19) L5:
+(20) goto L4
+(21) L3:
+(22) y = 2
+(23) L4:
+(24) PRINT x
+(25) PRINT y

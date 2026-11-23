@@ -1,0 +1,30 @@
+function bump:
+(0) + total, 1 : INT
+(1) total = (0)
+function compute:
+(0) * n, 100 : INT
+(1) unused = (0)
+(2) * n, 2 : INT
+(3) t = (2)
+(4) + n, 1 : INT
+(5) t = (4)
+(6) * total, 2 : INT
+(7) k = (6)
+(8) CALL bump, 0 : VOID
+(9) * total, 2 : INT
+(10) m = (9)
+(11) + t, k : INT
+(12) + (11), m : INT
+(13) RETURN (12) : INT
+function main:
+(0) total = 10
+(1) y = 99
+(2) PARAM 4 : INT
+(3) CALL compute, 1 : INT
+(4) x = (3)
+(5) + x, 1 : INT
+(6) PRINT (5)
+(7) PARAM 0 : INT
+(8) CALL compute, 1 : INT
+(9) x = (8)
+(10) PRINT total

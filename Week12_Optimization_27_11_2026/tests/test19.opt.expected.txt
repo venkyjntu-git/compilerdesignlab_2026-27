@@ -1,0 +1,131 @@
+==== function main
+--- 3AC before optimization (17 triples)
+(0) PARAM 30 : INT
+(1) PARAM 40 : INT
+(2) CALL add, 2 : INT
+(3) c = (2)
+(4) PARAM 40.8 : DOUBLE
+(5) PARAM 50.2 : DOUBLE
+(6) CALL mult, 2 : DOUBLE
+(7) d = (6)
+(8) - 0, 5 : INT
+(9) a = (8)
+(10) - 0, 45 : INT
+(11) b = (10)
+(12) PARAM a : INT
+(13) PARAM b : INT
+(14) CALL add, 2 : INT
+(15) c = (14)
+(16) PRINT c
+--- after constant folding + copy propagation: 2 folded, 2 operand(s) propagated (15 triples)
+(0) PARAM 30 : INT
+(1) PARAM 40 : INT
+(2) CALL add, 2 : INT
+(3) c = (2)
+(4) PARAM 40.8 : DOUBLE
+(5) PARAM 50.2 : DOUBLE
+(6) CALL mult, 2 : DOUBLE
+(7) d = (6)
+(8) a = -5
+(9) b = -45
+(10) PARAM -5 : INT
+(11) PARAM -45 : INT
+(12) CALL add, 2 : INT
+(13) c = (12)
+(14) PRINT c
+--- available expressions (a fact holder=a op b: holder holds a op b)
+B0  gen={}  kill={}  IN={}  OUT={}
+--- after common subexpression elimination: 0 eliminated (15 triples)
+(0) PARAM 30 : INT
+(1) PARAM 40 : INT
+(2) CALL add, 2 : INT
+(3) c = (2)
+(4) PARAM 40.8 : DOUBLE
+(5) PARAM 50.2 : DOUBLE
+(6) CALL mult, 2 : DOUBLE
+(7) d = (6)
+(8) a = -5
+(9) b = -45
+(10) PARAM -5 : INT
+(11) PARAM -45 : INT
+(12) CALL add, 2 : INT
+(13) c = (12)
+(14) PRINT c
+--- after constant folding + copy propagation (again): 0 folded, 0 operand(s) propagated (15 triples)
+(0) PARAM 30 : INT
+(1) PARAM 40 : INT
+(2) CALL add, 2 : INT
+(3) c = (2)
+(4) PARAM 40.8 : DOUBLE
+(5) PARAM 50.2 : DOUBLE
+(6) CALL mult, 2 : DOUBLE
+(7) d = (6)
+(8) a = -5
+(9) b = -45
+(10) PARAM -5 : INT
+(11) PARAM -45 : INT
+(12) CALL add, 2 : INT
+(13) c = (12)
+(14) PRINT c
+--- liveness (first round)
+B0  use={a, b, c, d, e, f}  def={a, b, c, d}  IN={a, b, c, d, e, f}  OUT={a, b, c, d, e, f}
+--- after dead code elimination: 0 assignment(s) removed in 1 round(s) (15 triples)
+(0) PARAM 30 : INT
+(1) PARAM 40 : INT
+(2) CALL add, 2 : INT
+(3) c = (2)
+(4) PARAM 40.8 : DOUBLE
+(5) PARAM 50.2 : DOUBLE
+(6) CALL mult, 2 : DOUBLE
+(7) d = (6)
+(8) a = -5
+(9) b = -45
+(10) PARAM -5 : INT
+(11) PARAM -45 : INT
+(12) CALL add, 2 : INT
+(13) c = (12)
+(14) PRINT c
+
+==== function add
+--- 3AC before optimization (2 triples)
+(0) + a1, a2 : INT
+(1) RETURN (0) : INT
+--- after constant folding + copy propagation: 0 folded, 0 operand(s) propagated (2 triples)
+(0) + a1, a2 : INT
+(1) RETURN (0) : INT
+--- available expressions (a fact holder=a op b: holder holds a op b)
+B0  gen={}  kill={}  IN={}  OUT={}
+--- after common subexpression elimination: 0 eliminated (2 triples)
+(0) + a1, a2 : INT
+(1) RETURN (0) : INT
+--- after constant folding + copy propagation (again): 0 folded, 0 operand(s) propagated (2 triples)
+(0) + a1, a2 : INT
+(1) RETURN (0) : INT
+--- liveness (first round)
+B0  use={a1, a2}  def={}  IN={a, a1, a2, b, c, d, e, f}  OUT={a, b, c, d, e, f}
+--- after dead code elimination: 0 assignment(s) removed in 1 round(s) (2 triples)
+(0) + a1, a2 : INT
+(1) RETURN (0) : INT
+
+==== function mult
+--- 3AC before optimization (2 triples)
+(0) * m1, m2 : DOUBLE
+(1) RETURN (0) : DOUBLE
+--- after constant folding + copy propagation: 0 folded, 0 operand(s) propagated (2 triples)
+(0) * m1, m2 : DOUBLE
+(1) RETURN (0) : DOUBLE
+--- available expressions (a fact holder=a op b: holder holds a op b)
+B0  gen={}  kill={}  IN={}  OUT={}
+--- after common subexpression elimination: 0 eliminated (2 triples)
+(0) * m1, m2 : DOUBLE
+(1) RETURN (0) : DOUBLE
+--- after constant folding + copy propagation (again): 0 folded, 0 operand(s) propagated (2 triples)
+(0) * m1, m2 : DOUBLE
+(1) RETURN (0) : DOUBLE
+--- liveness (first round)
+B0  use={m1, m2}  def={}  IN={a, b, c, d, e, f, m1, m2}  OUT={a, b, c, d, e, f}
+--- after dead code elimination: 0 assignment(s) removed in 1 round(s) (2 triples)
+(0) * m1, m2 : DOUBLE
+(1) RETURN (0) : DOUBLE
+
+==== MIPS instructions (static count): 83 unoptimized, 79 optimized (4.8% fewer)

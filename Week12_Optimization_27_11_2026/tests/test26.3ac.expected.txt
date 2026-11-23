@@ -1,0 +1,28 @@
+(0) n = 6
+(1) evens = 0
+(2) odds = 0
+(3) > n, 0 : cmp INT
+(4) if_false (3) goto L0 : INT
+(5) i = 1
+(6) L1:
+(7) <= i, n : cmp INT
+(8) if_false (7) goto L2 : INT
+(9) / i, 2 : INT
+(10) * (9), 2 : INT
+(11) - i, (10) : INT
+(12) == (11), 0 : cmp INT
+(13) if_false (12) goto L3 : INT
+(14) + evens, 1 : INT
+(15) evens = (14)
+(16) goto L4
+(17) L3:
+(18) + odds, 1 : INT
+(19) odds = (18)
+(20) L4:
+(21) + i, 1 : INT
+(22) i = (21)
+(23) goto L1
+(24) L2:
+(25) L0:
+(26) PRINT evens
+(27) PRINT odds

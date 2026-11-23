@@ -1,0 +1,16 @@
+Functions
+  int factorial(int)   (definition, line 2)
+  int min(int, int)   (definition, line 11)
+  int max(int, int)   (definition, line 14)
+  int main()   (definition, line 19)
+Function factorial
+  n: DataType.INT (parameter)
+  result: DataType.INT
+Function min
+  a: DataType.INT (parameter)
+  b: DataType.INT (parameter)
+Function max
+  a: DataType.INT (parameter)
+  b: DataType.INT (parameter)
+Function main
+  n: DataType.INT

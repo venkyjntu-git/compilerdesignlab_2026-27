@@ -1,0 +1,7 @@
+Functions
+  void printSquareOfFive()   (definition, line 2)
+  int main()   (definition, line 7)
+Function printSquareOfFive
+  x: DataType.INT
+Function main
+  x: DataType.INT

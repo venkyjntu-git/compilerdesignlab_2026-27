@@ -1,0 +1,25 @@
+// Week 10's take-home programs, now running: a loop-based factorial, and min/max
+int factorial(int n){
+    int result;
+    result = 1;
+    while (n > 1) {
+        result = result * n;
+        n = n - 1;              // changes only this call's COPY of the argument
+    }
+    return result;
+}
+int min(int a, int b){
+    return (a < b) ? a : b;
+}
+int max(int a, int b){
+    if (a > b)
+        return a;
+    return b;
+}
+int main(){
+    int n;
+    n = 6;
+    print factorial(n);
+    print n;                    // still 6: arguments are passed by value
+    print max(min(7, 3), min(max(7, 3), 5));    // the middle value of 7, 3, 5
+}

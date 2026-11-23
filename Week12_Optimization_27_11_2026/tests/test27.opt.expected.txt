@@ -1,0 +1,57 @@
+==== function main
+--- 3AC before optimization (17 triples)
+(0) a = 4
+(1) * a, 3 : INT
+(2) + (1), 2 : INT
+(3) b = (2)
+(4) / 20, 3 : INT
+(5) - b, (4) : INT
+(6) c = (5)
+(7) CAST(DOUBLE) c : from INT
+(8) CAST(DOUBLE) 16 : from INT
+(9) / (7), (8) : DOUBLE
+(10) r = (9)
+(11) PRINT b
+(12) PRINT c
+(13) PRINT r
+(14) / 7, 2 : INT
+(15) - 0, (14) : INT
+(16) PRINT (15)
+--- after constant folding + copy propagation: 9 folded, 6 operand(s) propagated (8 triples)
+(0) a = 4
+(1) b = 14
+(2) c = 8
+(3) r = 0.5
+(4) PRINT 14
+(5) PRINT 8
+(6) PRINT 0.5
+(7) PRINT -3
+--- available expressions (a fact holder=a op b: holder holds a op b)
+B0  gen={}  kill={}  IN={}  OUT={}
+--- after common subexpression elimination: 0 eliminated (8 triples)
+(0) a = 4
+(1) b = 14
+(2) c = 8
+(3) r = 0.5
+(4) PRINT 14
+(5) PRINT 8
+(6) PRINT 0.5
+(7) PRINT -3
+--- after constant folding + copy propagation (again): 0 folded, 0 operand(s) propagated (8 triples)
+(0) a = 4
+(1) b = 14
+(2) c = 8
+(3) r = 0.5
+(4) PRINT 14
+(5) PRINT 8
+(6) PRINT 0.5
+(7) PRINT -3
+--- liveness (first round)
+B0  use={}  def={a, b, c, r}  IN={}  OUT={}
+--- after dead code elimination: 4 assignment(s) removed in 2 round(s) (4 triples)
+(0) PRINT 14
+(1) PRINT 8
+(2) PRINT 0.5
+(3) PRINT -3
+
+==== MIPS instructions (static count): 54 unoptimized, 28 optimized (48.1% fewer)

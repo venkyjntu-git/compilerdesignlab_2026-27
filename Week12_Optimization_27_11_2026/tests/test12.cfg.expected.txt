@@ -1,0 +1,17 @@
+B0   preds: -   succs: B1
+    (0) n = 10
+    (1) i = 1
+    (2) sum = 0
+B1   preds: B0 B2   succs: B3[false] B2[true]
+    (3) L0:
+    (4) <= i, n : cmp INT
+    (5) if_false (4) goto L1 : INT
+B2   preds: B1   succs: B1
+    (6) + sum, i : INT
+    (7) sum = (6)
+    (8) + i, 1 : INT
+    (9) i = (8)
+    (10) goto L0
+B3   preds: B1   succs: exit
+    (11) L1:
+    (12) PRINT sum

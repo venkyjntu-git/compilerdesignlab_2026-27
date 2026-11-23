@@ -1,0 +1,4 @@
+(0) PRINT 14
+(1) PRINT 8
+(2) PRINT 0.5
+(3) PRINT -3

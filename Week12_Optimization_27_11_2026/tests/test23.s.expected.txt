@@ -1,0 +1,202 @@
+.text
+.globl main
+f_weighted:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -12
+    move $sp, $fp
+    sw $a0, 0($fp)
+    sw $a2, 4($fp)
+    sw $a3, 8($fp)
+    lw $t0, 0($fp)
+    lw $t1, 4($fp)
+    add $t2, $t0, $t1
+    lw $t0, 8($fp)
+    add $t1, $t2, $t0
+    lw $t0, 28($fp)
+    add $t2, $t1, $t0
+    lw $t0, 32($fp)
+    add $t1, $t2, $t0
+    mtc1 $t1, $f0
+    cvt.d.w $f2, $f0
+    l.d $f0, 20($fp)
+    mul.d $f4, $f0, $f2
+    mov.d $f0, $f4
+    j ret_weighted
+    ret_weighted:
+    addiu $sp, $fp, 12
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra
+f_sum6:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -16
+    move $sp, $fp
+    sw $a0, 0($fp)
+    sw $a1, 4($fp)
+    sw $a2, 8($fp)
+    sw $a3, 12($fp)
+    lw $t0, 0($fp)
+    lw $t1, 4($fp)
+    add $t2, $t0, $t1
+    lw $t0, 8($fp)
+    add $t1, $t2, $t0
+    lw $t0, 12($fp)
+    add $t2, $t1, $t0
+    lw $t0, 24($fp)
+    add $t1, $t2, $t0
+    lw $t0, 28($fp)
+    add $t2, $t1, $t0
+    move $v0, $t2
+    j ret_sum6
+    ret_sum6:
+    addiu $sp, $fp, 16
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra
+main:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -12
+    move $sp, $fp
+    li $t0, 10
+    li $t1, 3
+    mul $t2, $t0, $t1
+    subu $sp, $sp, 4
+    sw $t2, 0($sp)
+    subu $sp, $sp, 8
+    li $t0, 1
+    move $a0, $t0
+    li $t0, 2
+    move $a1, $t0
+    li $t0, 3
+    move $a2, $t0
+    li $t0, 4
+    move $a3, $t0
+    li $t0, 5
+    sw $t0, 0($sp)
+    li $t0, 6
+    sw $t0, 4($sp)
+    jal f_sum6
+    addiu $sp, $sp, 8
+    move $t0, $v0
+    lw $t2, 0($sp)
+    addiu $sp, $sp, 4
+    add $t1, $t2, $t0
+    sw $t1, 0($fp)
+    lw $t0, 0($fp)
+    li $t1, 0
+    bgt $t0, $t1, L0
+    li $t2, 0
+    b L1
+    L0:
+    li $t2, 1
+    L1:
+    bne $t2, $zero, L2
+    li.d $f2, 2.5
+    mov.d $f0, $f2
+    b L3
+    L2:
+    li.d $f2, 1.5
+    mov.d $f0, $f2
+    L3:
+    subu $sp, $sp, 8
+    s.d $f0, 0($sp)
+    subu $sp, $sp, 16
+    li $t0, 1
+    move $a0, $t0
+    li.d $f2, 0.5
+    s.d $f2, 0($sp)
+    li $t0, 2
+    move $a2, $t0
+    li $t0, 3
+    move $a3, $t0
+    li $t0, 4
+    sw $t0, 8($sp)
+    li $t0, 5
+    sw $t0, 12($sp)
+    jal f_weighted
+    addiu $sp, $sp, 16
+    mov.d $f2, $f0
+    l.d $f0, 0($sp)
+    addiu $sp, $sp, 8
+    add.d $f4, $f0, $f2
+    s.d $f4, 4($fp)
+    lw $t0, 0($fp)
+    move $a0, $t0
+    li $v0, 1
+    syscall
+    l.d $f0, 4($fp)
+    mov.d $f12, $f0
+    li $v0, 3
+    syscall
+    subu $sp, $sp, 8
+    li $t0, 1
+    move $a0, $t0
+    li $t0, 1
+    move $a1, $t0
+    li $t0, 1
+    move $a2, $t0
+    li $t0, 1
+    move $a3, $t0
+    li $t0, 1
+    sw $t0, 0($sp)
+    li $t0, 1
+    sw $t0, 4($sp)
+    jal f_sum6
+    addiu $sp, $sp, 8
+    move $t0, $v0
+    subu $sp, $sp, 4
+    sw $t0, 0($sp)
+    subu $sp, $sp, 8
+    li $t1, 0
+    move $a0, $t1
+    li $t1, 0
+    move $a1, $t1
+    li $t1, 0
+    move $a2, $t1
+    li $t1, 0
+    move $a3, $t1
+    li $t1, 0
+    sw $t1, 0($sp)
+    li $t1, 1
+    sw $t1, 4($sp)
+    jal f_sum6
+    addiu $sp, $sp, 8
+    move $t1, $v0
+    lw $t0, 0($sp)
+    addiu $sp, $sp, 4
+    subu $sp, $sp, 8
+    move $a0, $t0
+    li $t0, 2
+    move $a1, $t0
+    li $t0, 3
+    move $a2, $t0
+    li $t0, 4
+    move $a3, $t0
+    li $t0, 5
+    sw $t0, 0($sp)
+    sw $t1, 4($sp)
+    jal f_sum6
+    addiu $sp, $sp, 8
+    move $t0, $v0
+    move $a0, $t0
+    li $v0, 1
+    syscall
+    addiu $sp, $fp, 12
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra

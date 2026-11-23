@@ -1,0 +1,10 @@
+(0) i = 2
+(1) PRINT 1
+(2) PRINT 1
+(3) if_false 1 goto L0 : INT
+(4) PRINT 7
+(5) L0:
+(6) == i, 2 : cmp INT
+(7) CAST(DOUBLE) i : from INT
+(8) (6) ? 1.5 : (7) : DOUBLE
+(9) PRINT (8)

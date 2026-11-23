@@ -1,0 +1,252 @@
+==== function f
+--- 3AC before optimization (21 triples)
+(0) * a, b : INT
+(1) x = (0)
+(2) > a, b : cmp INT
+(3) if_false (2) goto L0 : INT
+(4) * a, b : INT
+(5) + (4), 1 : INT
+(6) y = (5)
+(7) goto L1
+(8) L0:
+(9) y = 0
+(10) L1:
+(11) * a, b : INT
+(12) z = (11)
+(13) + a, 1 : INT
+(14) a = (13)
+(15) * a, b : INT
+(16) w = (15)
+(17) + x, y : INT
+(18) + (17), z : INT
+(19) + (18), w : INT
+(20) RETURN (19) : INT
+--- after constant folding + copy propagation: 0 folded, 0 operand(s) propagated (21 triples)
+(0) * a, b : INT
+(1) x = (0)
+(2) > a, b : cmp INT
+(3) if_false (2) goto L0 : INT
+(4) * a, b : INT
+(5) + (4), 1 : INT
+(6) y = (5)
+(7) goto L1
+(8) L0:
+(9) y = 0
+(10) L1:
+(11) * a, b : INT
+(12) z = (11)
+(13) + a, 1 : INT
+(14) a = (13)
+(15) * a, b : INT
+(16) w = (15)
+(17) + x, y : INT
+(18) + (17), z : INT
+(19) + (18), w : INT
+(20) RETURN (19) : INT
+--- available expressions (a fact holder=a op b: holder holds a op b)
+B0  gen={x=a*b}  kill={}  IN={}  OUT={x=a*b}
+B1  gen={}  kill={}  IN={x=a*b}  OUT={x=a*b}
+B2  gen={}  kill={}  IN={x=a*b}  OUT={x=a*b}
+B3  gen={w=a*b}  kill={x=a*b, z=a*b}  IN={x=a*b}  OUT={w=a*b}
+--- after common subexpression elimination: 2 eliminated (19 triples)
+(0) * a, b : INT
+(1) x = (0)
+(2) > a, b : cmp INT
+(3) if_false (2) goto L0 : INT
+(4) + x, 1 : INT
+(5) y = (4)
+(6) goto L1
+(7) L0:
+(8) y = 0
+(9) L1:
+(10) z = x
+(11) + a, 1 : INT
+(12) a = (11)
+(13) * a, b : INT
+(14) w = (13)
+(15) + x, y : INT
+(16) + (15), z : INT
+(17) + (16), w : INT
+(18) RETURN (17) : INT
+--- after constant folding + copy propagation (again): 0 folded, 1 operand(s) propagated (19 triples)
+(0) * a, b : INT
+(1) x = (0)
+(2) > a, b : cmp INT
+(3) if_false (2) goto L0 : INT
+(4) + x, 1 : INT
+(5) y = (4)
+(6) goto L1
+(7) L0:
+(8) y = 0
+(9) L1:
+(10) z = x
+(11) + a, 1 : INT
+(12) a = (11)
+(13) * a, b : INT
+(14) w = (13)
+(15) + x, y : INT
+(16) + (15), x : INT
+(17) + (16), w : INT
+(18) RETURN (17) : INT
+--- liveness (first round)
+B0  use={a, b}  def={x}  IN={a, b}  OUT={a, b, x}
+B1  use={x}  def={y}  IN={a, b, x}  OUT={a, b, x, y}
+B2  use={}  def={y}  IN={a, b, x}  OUT={a, b, x, y}
+B3  use={a, b, x, y}  def={a, w, z}  IN={a, b, x, y}  OUT={}
+--- after dead code elimination: 1 assignment(s) removed in 2 round(s) (18 triples)
+(0) * a, b : INT
+(1) x = (0)
+(2) > a, b : cmp INT
+(3) if_false (2) goto L0 : INT
+(4) + x, 1 : INT
+(5) y = (4)
+(6) goto L1
+(7) L0:
+(8) y = 0
+(9) L1:
+(10) + a, 1 : INT
+(11) a = (10)
+(12) * a, b : INT
+(13) w = (12)
+(14) + x, y : INT
+(15) + (14), x : INT
+(16) + (15), w : INT
+(17) RETURN (16) : INT
+
+==== function g
+--- 3AC before optimization (10 triples)
+(0) p = 0
+(1) > a, b : cmp INT
+(2) if_false (1) goto L2 : INT
+(3) * a, b : INT
+(4) p = (3)
+(5) L2:
+(6) * a, b : INT
+(7) q = (6)
+(8) + p, q : INT
+(9) RETURN (8) : INT
+--- after constant folding + copy propagation: 0 folded, 0 operand(s) propagated (10 triples)
+(0) p = 0
+(1) > a, b : cmp INT
+(2) if_false (1) goto L2 : INT
+(3) * a, b : INT
+(4) p = (3)
+(5) L2:
+(6) * a, b : INT
+(7) q = (6)
+(8) + p, q : INT
+(9) RETURN (8) : INT
+--- available expressions (a fact holder=a op b: holder holds a op b)
+B0  gen={}  kill={p=a*b}  IN={}  OUT={}
+B1  gen={p=a*b}  kill={}  IN={}  OUT={p=a*b}
+B2  gen={q=a*b}  kill={}  IN={}  OUT={q=a*b}
+--- after common subexpression elimination: 0 eliminated (10 triples)
+(0) p = 0
+(1) > a, b : cmp INT
+(2) if_false (1) goto L2 : INT
+(3) * a, b : INT
+(4) p = (3)
+(5) L2:
+(6) * a, b : INT
+(7) q = (6)
+(8) + p, q : INT
+(9) RETURN (8) : INT
+--- after constant folding + copy propagation (again): 0 folded, 0 operand(s) propagated (10 triples)
+(0) p = 0
+(1) > a, b : cmp INT
+(2) if_false (1) goto L2 : INT
+(3) * a, b : INT
+(4) p = (3)
+(5) L2:
+(6) * a, b : INT
+(7) q = (6)
+(8) + p, q : INT
+(9) RETURN (8) : INT
+--- liveness (first round)
+B0  use={a, b}  def={p}  IN={a, b}  OUT={a, b, p}
+B1  use={a, b}  def={p}  IN={a, b}  OUT={a, b, p}
+B2  use={a, b, p}  def={q}  IN={a, b, p}  OUT={}
+--- after dead code elimination: 0 assignment(s) removed in 1 round(s) (10 triples)
+(0) p = 0
+(1) > a, b : cmp INT
+(2) if_false (1) goto L2 : INT
+(3) * a, b : INT
+(4) p = (3)
+(5) L2:
+(6) * a, b : INT
+(7) q = (6)
+(8) + p, q : INT
+(9) RETURN (8) : INT
+
+==== function main
+--- 3AC before optimization (12 triples)
+(0) PARAM 3 : INT
+(1) PARAM 2 : INT
+(2) CALL f, 2 : INT
+(3) PRINT (2)
+(4) PARAM 2 : INT
+(5) PARAM 3 : INT
+(6) CALL f, 2 : INT
+(7) PRINT (6)
+(8) PARAM 2 : INT
+(9) PARAM 3 : INT
+(10) CALL g, 2 : INT
+(11) PRINT (10)
+--- after constant folding + copy propagation: 0 folded, 0 operand(s) propagated (12 triples)
+(0) PARAM 3 : INT
+(1) PARAM 2 : INT
+(2) CALL f, 2 : INT
+(3) PRINT (2)
+(4) PARAM 2 : INT
+(5) PARAM 3 : INT
+(6) CALL f, 2 : INT
+(7) PRINT (6)
+(8) PARAM 2 : INT
+(9) PARAM 3 : INT
+(10) CALL g, 2 : INT
+(11) PRINT (10)
+--- available expressions (a fact holder=a op b: holder holds a op b)
+B0  gen={}  kill={}  IN={}  OUT={}
+--- after common subexpression elimination: 0 eliminated (12 triples)
+(0) PARAM 3 : INT
+(1) PARAM 2 : INT
+(2) CALL f, 2 : INT
+(3) PRINT (2)
+(4) PARAM 2 : INT
+(5) PARAM 3 : INT
+(6) CALL f, 2 : INT
+(7) PRINT (6)
+(8) PARAM 2 : INT
+(9) PARAM 3 : INT
+(10) CALL g, 2 : INT
+(11) PRINT (10)
+--- after constant folding + copy propagation (again): 0 folded, 0 operand(s) propagated (12 triples)
+(0) PARAM 3 : INT
+(1) PARAM 2 : INT
+(2) CALL f, 2 : INT
+(3) PRINT (2)
+(4) PARAM 2 : INT
+(5) PARAM 3 : INT
+(6) CALL f, 2 : INT
+(7) PRINT (6)
+(8) PARAM 2 : INT
+(9) PARAM 3 : INT
+(10) CALL g, 2 : INT
+(11) PRINT (10)
+--- liveness (first round)
+B0  use={}  def={}  IN={}  OUT={}
+--- after dead code elimination: 0 assignment(s) removed in 1 round(s) (12 triples)
+(0) PARAM 3 : INT
+(1) PARAM 2 : INT
+(2) CALL f, 2 : INT
+(3) PRINT (2)
+(4) PARAM 2 : INT
+(5) PARAM 3 : INT
+(6) CALL f, 2 : INT
+(7) PRINT (6)
+(8) PARAM 2 : INT
+(9) PARAM 3 : INT
+(10) CALL g, 2 : INT
+(11) PRINT (10)
+
+==== MIPS instructions (static count): 130 unoptimized, 124 optimized (4.6% fewer)

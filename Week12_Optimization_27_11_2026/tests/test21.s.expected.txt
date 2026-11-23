@@ -1,0 +1,107 @@
+.data
+g_count: .word 0
+.text
+.globl main
+f_bump:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -0
+    move $sp, $fp
+    lw $t0, g_count
+    li $t1, 1
+    add $t2, $t0, $t1
+    sw $t2, g_count
+    j ret_bump
+    ret_bump:
+    addiu $sp, $fp, 0
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra
+f_firstMultipleOf:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -12
+    move $sp, $fp
+    sw $a0, 4($fp)
+    sw $a1, 8($fp)
+    li $t0, 1
+    sw $t0, 0($fp)
+    L0:
+    lw $t0, 0($fp)
+    lw $t1, 8($fp)
+    ble $t0, $t1, L3
+    li $t2, 0
+    b L4
+    L3:
+    li $t2, 1
+    L4:
+    beq $t2, $zero, L1
+    lw $t0, 0($fp)
+    lw $t1, 4($fp)
+    div $t2, $t0, $t1
+    lw $t0, 4($fp)
+    mul $t1, $t2, $t0
+    lw $t0, 0($fp)
+    beq $t1, $t0, L5
+    li $t2, 0
+    b L6
+    L5:
+    li $t2, 1
+    L6:
+    beq $t2, $zero, L2
+    lw $t0, 0($fp)
+    move $v0, $t0
+    j ret_firstMultipleOf
+    L2:
+    lw $t0, 0($fp)
+    li $t1, 1
+    add $t2, $t0, $t1
+    sw $t2, 0($fp)
+    j L0
+    L1:
+    li $t0, 0
+    move $v0, $t0
+    j ret_firstMultipleOf
+    ret_firstMultipleOf:
+    addiu $sp, $fp, 12
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra
+main:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -4
+    move $sp, $fp
+    li $t0, 100
+    sw $t0, 0($fp)
+    jal f_bump
+    jal f_bump
+    lw $t0, 0($fp)
+    move $a0, $t0
+    li $v0, 1
+    syscall
+    li $t0, 4
+    move $a0, $t0
+    li $t0, 10
+    move $a1, $t0
+    jal f_firstMultipleOf
+    move $t0, $v0
+    move $a0, $t0
+    li $v0, 1
+    syscall
+    addiu $sp, $fp, 4
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra

@@ -1,0 +1,46 @@
+function f:
+(0) * a, b : INT
+(1) x = (0)
+(2) > a, b : cmp INT
+(3) if_false (2) goto L0 : INT
+(4) * a, b : INT
+(5) + (4), 1 : INT
+(6) y = (5)
+(7) goto L1
+(8) L0:
+(9) y = 0
+(10) L1:
+(11) * a, b : INT
+(12) z = (11)
+(13) + a, 1 : INT
+(14) a = (13)
+(15) * a, b : INT
+(16) w = (15)
+(17) + x, y : INT
+(18) + (17), z : INT
+(19) + (18), w : INT
+(20) RETURN (19) : INT
+function g:
+(0) p = 0
+(1) > a, b : cmp INT
+(2) if_false (1) goto L2 : INT
+(3) * a, b : INT
+(4) p = (3)
+(5) L2:
+(6) * a, b : INT
+(7) q = (6)
+(8) + p, q : INT
+(9) RETURN (8) : INT
+function main:
+(0) PARAM 3 : INT
+(1) PARAM 2 : INT
+(2) CALL f, 2 : INT
+(3) PRINT (2)
+(4) PARAM 2 : INT
+(5) PARAM 3 : INT
+(6) CALL f, 2 : INT
+(7) PRINT (6)
+(8) PARAM 2 : INT
+(9) PARAM 3 : INT
+(10) CALL g, 2 : INT
+(11) PRINT (10)

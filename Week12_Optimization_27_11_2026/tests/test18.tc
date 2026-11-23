@@ -1,0 +1,7 @@
+// Stage 4a: a program with functions but NO main -- must be a semantic error
+void helper(){
+    print 1;
+}
+void other(){
+    helper();
+}

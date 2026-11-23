@@ -1,0 +1,10 @@
+Functions
+  int fact(int)   (definition, line 2)
+  int fib(int)   (definition, line 7)
+  int main()   (definition, line 12)
+Function fact
+  n: DataType.INT (parameter)
+Function fib
+  n: DataType.INT (parameter)
+Function main
+  (no local variables)

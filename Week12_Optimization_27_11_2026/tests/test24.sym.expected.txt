@@ -1,0 +1,21 @@
+Global
+  counter: DataType.INT
+Functions
+  string pick(int, string, string)   (definition, line 3)
+  char grade(int)   (definition, line 8)
+  int next()   (definition, line 13)
+  void show(string, int)   (definition, line 17)
+  int main()   (definition, line 21)
+Function pick
+  k: DataType.INT (parameter)
+  yes: DataType.STRING (parameter)
+  no: DataType.STRING (parameter)
+Function grade
+  score: DataType.INT (parameter)
+Function next
+  (no local variables)
+Function show
+  label: DataType.STRING (parameter)
+  v: DataType.INT (parameter)
+Function main
+  (no local variables)

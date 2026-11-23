@@ -1,0 +1,15 @@
+(0) a = 40
+(1) b = 50
+(2) if_false 0 goto L0 : INT
+(3) CAST(DOUBLE) a : from INT
+(4) CAST(DOUBLE) b : from INT
+(5) / (3), (4) : DOUBLE
+(6) c = (5)
+(7) goto L1
+(8) L0:
+(9) CAST(DOUBLE) b : from INT
+(10) CAST(DOUBLE) a : from INT
+(11) / (9), (10) : DOUBLE
+(12) c = (11)
+(13) L1:
+(14) PRINT c

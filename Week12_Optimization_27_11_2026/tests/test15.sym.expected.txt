@@ -1,0 +1,3 @@
+Function main
+  d: DataType.DOUBLE
+  steps: DataType.INT

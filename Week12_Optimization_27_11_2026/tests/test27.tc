@@ -1,0 +1,13 @@
+// constant folding + copy propagation: every value here is known at compile time
+int main(){
+    int a,b,c;
+    double r;
+    a = 4;
+    b = a * 3 + 2;          // 14
+    c = b - 20 / 3;         // 14 - 6 = 8
+    r = (double)c / 16;     // 0.5
+    print b;
+    print c;
+    print r;
+    print 0 - 7 / 2;        // -3: integer division truncates toward zero, as on SPIM
+}

@@ -1,0 +1,170 @@
+.data
+g_counter: .word 0
+Lstr0: .asciiz "pos"
+Lstr1: .asciiz "zero"
+Lstr2: .asciiz "n="
+.text
+.globl main
+f_pick:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -12
+    move $sp, $fp
+    sw $a0, 0($fp)
+    sw $a1, 4($fp)
+    sw $a2, 8($fp)
+    lw $t0, 0($fp)
+    li $t1, 0
+    bgt $t0, $t1, L4
+    li $t2, 0
+    b L5
+    L4:
+    li $t2, 1
+    L5:
+    beq $t2, $zero, L0
+    lw $t0, 4($fp)
+    move $v0, $t0
+    j ret_pick
+    L0:
+    lw $t0, 8($fp)
+    move $v0, $t0
+    j ret_pick
+    ret_pick:
+    addiu $sp, $fp, 12
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra
+f_grade:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -4
+    move $sp, $fp
+    sw $a0, 0($fp)
+    lw $t0, 0($fp)
+    li $t1, 50
+    bge $t0, $t1, L6
+    li $t2, 0
+    b L7
+    L6:
+    li $t2, 1
+    L7:
+    beq $t2, $zero, L1
+    li $t0, 80
+    move $v0, $t0
+    j ret_grade
+    L1:
+    li $t0, 70
+    move $v0, $t0
+    j ret_grade
+    ret_grade:
+    addiu $sp, $fp, 4
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra
+f_next:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -0
+    move $sp, $fp
+    lw $t0, g_counter
+    li $t1, 1
+    add $t2, $t0, $t1
+    sw $t2, g_counter
+    lw $t0, g_counter
+    move $v0, $t0
+    j ret_next
+    ret_next:
+    addiu $sp, $fp, 0
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra
+f_show:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -8
+    move $sp, $fp
+    sw $a0, 0($fp)
+    sw $a1, 4($fp)
+    lw $t0, 0($fp)
+    move $a0, $t0
+    li $v0, 4
+    syscall
+    lw $t0, 4($fp)
+    move $a0, $t0
+    li $v0, 1
+    syscall
+    addiu $sp, $fp, 8
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra
+main:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -0
+    move $sp, $fp
+    li $t0, 0
+    sw $t0, g_counter
+    L2:
+    jal f_next
+    move $t0, $v0
+    li $t1, 3
+    blt $t0, $t1, L8
+    li $t2, 0
+    b L9
+    L8:
+    li $t2, 1
+    L9:
+    beq $t2, $zero, L3
+    lw $t0, g_counter
+    li $t1, 30
+    mul $t2, $t0, $t1
+    move $a0, $t2
+    jal f_grade
+    move $t0, $v0
+    move $a0, $t0
+    li $v0, 11
+    syscall
+    j L2
+    L3:
+    lw $t0, g_counter
+    li $t1, 3
+    sub $t2, $t0, $t1
+    move $a0, $t2
+    la $t0, Lstr0
+    move $a1, $t0
+    la $t0, Lstr1
+    move $a2, $t0
+    jal f_pick
+    move $t0, $v0
+    move $a0, $t0
+    li $v0, 4
+    syscall
+    la $t0, Lstr2
+    move $a0, $t0
+    lw $t0, g_counter
+    move $a1, $t0
+    jal f_show
+    addiu $sp, $fp, 0
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra

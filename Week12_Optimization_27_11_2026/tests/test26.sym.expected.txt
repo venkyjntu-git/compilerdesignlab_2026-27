@@ -1,0 +1,5 @@
+Function main
+  n: DataType.INT
+  i: DataType.INT
+  evens: DataType.INT
+  odds: DataType.INT

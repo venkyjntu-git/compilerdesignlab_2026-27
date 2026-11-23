@@ -1,0 +1,38 @@
+B0   preds: -   succs: B5[false] B1[true]
+    (0) a = 5
+    (1) b = 3
+    (2) c = 7
+    (3) x = 0
+    (4) y = 0
+    (5) > a, b : cmp INT
+    (6) if_false (5) goto L0 : INT
+B1   preds: B0   succs: B3[false] B2[true]
+    (7) > b, c : cmp INT
+    (8) if_false (7) goto L1 : INT
+B2   preds: B1   succs: B4
+    (9) x = 1
+    (10) goto L2
+B3   preds: B1   succs: B4
+    (11) L1:
+    (12) x = 2
+B4   preds: B2 B3   succs: B5
+    (13) L2:
+B5   preds: B0 B4   succs: B9[false] B6[true]
+    (14) L0:
+    (15) > a, b : cmp INT
+    (16) if_false (15) goto L3 : INT
+B6   preds: B5   succs: B8[false] B7[true]
+    (17) > b, c : cmp INT
+    (18) if_false (17) goto L5 : INT
+B7   preds: B6   succs: B8
+    (19) y = 1
+B8   preds: B6 B7   succs: B10
+    (20) L5:
+    (21) goto L4
+B9   preds: B5   succs: B10
+    (22) L3:
+    (23) y = 2
+B10   preds: B8 B9   succs: exit
+    (24) L4:
+    (25) PRINT x
+    (26) PRINT y

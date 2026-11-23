@@ -1,0 +1,18 @@
+Functions
+  int f(int, int)   (definition, line 2)
+  int g(int, int)   (definition, line 14)
+  int main()   (definition, line 22)
+Function f
+  a: DataType.INT (parameter)
+  b: DataType.INT (parameter)
+  x: DataType.INT
+  y: DataType.INT
+  z: DataType.INT
+  w: DataType.INT
+Function g
+  a: DataType.INT (parameter)
+  b: DataType.INT (parameter)
+  p: DataType.INT
+  q: DataType.INT
+Function main
+  (no local variables)

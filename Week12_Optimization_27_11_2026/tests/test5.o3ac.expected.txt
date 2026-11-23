@@ -1,0 +1,3 @@
+(0) PRINT 1
+(1) PRINT 'x'
+(2) PRINT "hello"

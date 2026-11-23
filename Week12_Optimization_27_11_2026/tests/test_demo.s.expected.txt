@@ -1,0 +1,211 @@
+.data
+g_calls: .word 0
+Lstr0: .asciiz "low"
+Lstr1: .asciiz "high"
+.text
+.globl main
+f_average:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -8
+    move $sp, $fp
+    sw $a0, 0($fp)
+    sw $a1, 4($fp)
+    lw $t0, g_calls
+    li $t1, 1
+    add $t2, $t0, $t1
+    sw $t2, g_calls
+    lw $t0, 0($fp)
+    mtc1 $t0, $f0
+    cvt.d.w $f2, $f0
+    lw $t0, 4($fp)
+    mtc1 $t0, $f0
+    cvt.d.w $f4, $f0
+    div.d $f0, $f2, $f4
+    mov.d $f0, $f0
+    j ret_average
+    ret_average:
+    addiu $sp, $fp, 8
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra
+f_sumTo:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -12
+    move $sp, $fp
+    sw $a0, 8($fp)
+    li $t0, 0
+    sw $t0, 4($fp)
+    li $t0, 1
+    sw $t0, 0($fp)
+    L0:
+    lw $t0, 0($fp)
+    lw $t1, 8($fp)
+    ble $t0, $t1, L5
+    li $t2, 0
+    b L6
+    L5:
+    li $t2, 1
+    L6:
+    beq $t2, $zero, L1
+    lw $t0, 4($fp)
+    lw $t1, 0($fp)
+    add $t2, $t0, $t1
+    sw $t2, 4($fp)
+    lw $t0, 0($fp)
+    li $t1, 1
+    add $t2, $t0, $t1
+    sw $t2, 0($fp)
+    j L0
+    L1:
+    lw $t0, 4($fp)
+    move $v0, $t0
+    j ret_sumTo
+    ret_sumTo:
+    addiu $sp, $fp, 12
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra
+f_fact:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -4
+    move $sp, $fp
+    sw $a0, 0($fp)
+    lw $t0, 0($fp)
+    li $t1, 1
+    ble $t0, $t1, L7
+    li $t2, 0
+    b L8
+    L7:
+    li $t2, 1
+    L8:
+    beq $t2, $zero, L2
+    li $t0, 1
+    move $v0, $t0
+    j ret_fact
+    L2:
+    lw $t0, 0($fp)
+    li $t1, 1
+    sub $t2, $t0, $t1
+    move $a0, $t2
+    jal f_fact
+    move $t0, $v0
+    lw $t1, 0($fp)
+    mul $t2, $t1, $t0
+    move $v0, $t2
+    j ret_fact
+    ret_fact:
+    addiu $sp, $fp, 4
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra
+main:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -28
+    move $sp, $fp
+    li $t0, 2
+    li $t1, 3
+    mul $t2, $t0, $t1
+    li $t0, 4
+    add $t1, $t2, $t0
+    sw $t1, 0($fp)
+    lw $t0, 0($fp)
+    li $t1, 2
+    mul $t2, $t0, $t1
+    sw $t2, 4($fp)
+    lw $t0, 0($fp)
+    lw $t1, 4($fp)
+    mul $t2, $t0, $t1
+    sw $t2, 12($fp)
+    lw $t0, 0($fp)
+    move $a0, $t0
+    jal f_sumTo
+    move $t0, $v0
+    sw $t0, 8($fp)
+    lw $t0, 8($fp)
+    move $a0, $t0
+    lw $t0, 0($fp)
+    move $a1, $t0
+    jal f_average
+    mov.d $f0, $f0
+    s.d $f0, 16($fp)
+    l.d $f0, 16($fp)
+    li.d $f2, 5.0
+    c.lt.d $f2, $f0
+    bc1t L9
+    li $t0, 0
+    b L10
+    L9:
+    li $t0, 1
+    L10:
+    bne $t0, $zero, L11
+    la $t0, Lstr0
+    move $t1, $t0
+    b L12
+    L11:
+    la $t0, Lstr1
+    move $t1, $t0
+    L12:
+    sw $t1, 24($fp)
+    lw $t0, 8($fp)
+    move $a0, $t0
+    li $v0, 1
+    syscall
+    l.d $f0, 16($fp)
+    mov.d $f12, $f0
+    li $v0, 3
+    syscall
+    lw $t0, 24($fp)
+    move $a0, $t0
+    li $v0, 4
+    syscall
+    li $t0, 5
+    move $a0, $t0
+    jal f_fact
+    move $t0, $v0
+    li $t1, 120
+    beq $t0, $t1, L13
+    li $t2, 0
+    b L14
+    L13:
+    li $t2, 1
+    L14:
+    beq $t2, $zero, L3
+    li $t0, 89
+    move $a0, $t0
+    li $v0, 11
+    syscall
+    j L4
+    L3:
+    li $t0, 78
+    move $a0, $t0
+    li $v0, 11
+    syscall
+    L4:
+    lw $t0, g_calls
+    move $a0, $t0
+    li $v0, 1
+    syscall
+    addiu $sp, $fp, 28
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra

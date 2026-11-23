@@ -1,0 +1,26 @@
+// common subexpression elimination across branches (available expressions)
+int f(int a, int b){
+    int x,y,z,w;
+    x = a * b;
+    if (a > b)
+        y = a * b + 1;      // a * b is available here (held in x): reused
+    else
+        y = 0;
+    z = a * b;              // available on BOTH paths into this point: reused
+    a = a + 1;
+    w = a * b;              // a changed: NOT available, must be recomputed
+    return x + y + z + w;
+}
+int g(int a, int b){
+    int p,q;
+    p = 0;
+    if (a > b)
+        p = a * b;
+    q = a * b;              // available on only ONE path: must NOT reuse p
+    return p + q;
+}
+int main(){
+    print f(3, 2);
+    print f(2, 3);
+    print g(2, 3);
+}

@@ -1,0 +1,55 @@
+.text
+.globl main
+main:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -12
+    move $sp, $fp
+    li $t0, 50
+    sw $t0, 0($fp)
+    li $t0, 40
+    sw $t0, 4($fp)
+    li $t0, 0
+    sw $t0, 8($fp)
+    lw $t0, 0($fp)
+    lw $t1, 4($fp)
+    bgt $t0, $t1, L2
+    li $t2, 0
+    b L3
+    L2:
+    li $t2, 1
+    L3:
+    beq $t2, $zero, L0
+    li $t0, 1
+    sw $t0, 8($fp)
+    L0:
+    lw $t0, 8($fp)
+    move $a0, $t0
+    li $v0, 1
+    syscall
+    lw $t0, 0($fp)
+    lw $t1, 4($fp)
+    bne $t0, $t1, L4
+    li $t2, 0
+    b L5
+    L4:
+    li $t2, 1
+    L5:
+    beq $t2, $zero, L1
+    lw $t0, 0($fp)
+    lw $t1, 4($fp)
+    sub $t2, $t0, $t1
+    sw $t2, 0($fp)
+    lw $t0, 0($fp)
+    move $a0, $t0
+    li $v0, 1
+    syscall
+    L1:
+    addiu $sp, $fp, 12
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra

@@ -1,0 +1,4 @@
+# 3 type error(s) found -- cannot proceed:
+# line 7: if condition must be numeric, got DataType.STRING
+# line 8: undeclared variable 'k'
+# line 9: cannot assign DataType.STRING to variable 'g' of type DataType.INT

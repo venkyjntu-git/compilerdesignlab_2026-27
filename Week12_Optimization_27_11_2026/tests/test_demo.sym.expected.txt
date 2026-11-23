@@ -1,0 +1,23 @@
+Global
+  calls: DataType.INT
+Functions
+  double average(int, int)   (definition, line 4)
+  int sumTo(int)   (definition, line 9)
+  int fact(int)   (definition, line 20)
+  int main()   (definition, line 26)
+Function average
+  total: DataType.INT (parameter)
+  count: DataType.INT (parameter)
+Function sumTo
+  n: DataType.INT (parameter)
+  i: DataType.INT
+  s: DataType.INT
+Function fact
+  n: DataType.INT (parameter)
+Function main
+  a: DataType.INT
+  b: DataType.INT
+  s: DataType.INT
+  unused: DataType.INT
+  avg: DataType.DOUBLE
+  verdict: DataType.STRING

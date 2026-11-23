@@ -1,0 +1,7 @@
+Functions
+  void helper()   (definition, line 2)
+  void other()   (definition, line 5)
+Function helper
+  (no local variables)
+Function other
+  (no local variables)

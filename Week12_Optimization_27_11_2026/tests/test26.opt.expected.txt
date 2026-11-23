@@ -1,0 +1,164 @@
+==== function main
+--- 3AC before optimization (28 triples)
+(0) n = 6
+(1) evens = 0
+(2) odds = 0
+(3) > n, 0 : cmp INT
+(4) if_false (3) goto L0 : INT
+(5) i = 1
+(6) L1:
+(7) <= i, n : cmp INT
+(8) if_false (7) goto L2 : INT
+(9) / i, 2 : INT
+(10) * (9), 2 : INT
+(11) - i, (10) : INT
+(12) == (11), 0 : cmp INT
+(13) if_false (12) goto L3 : INT
+(14) + evens, 1 : INT
+(15) evens = (14)
+(16) goto L4
+(17) L3:
+(18) + odds, 1 : INT
+(19) odds = (18)
+(20) L4:
+(21) + i, 1 : INT
+(22) i = (21)
+(23) goto L1
+(24) L2:
+(25) L0:
+(26) PRINT evens
+(27) PRINT odds
+--- after constant folding + copy propagation: 1 folded, 1 operand(s) propagated (27 triples)
+(0) n = 6
+(1) evens = 0
+(2) odds = 0
+(3) if_false 1 goto L0 : INT
+(4) i = 1
+(5) L1:
+(6) <= i, n : cmp INT
+(7) if_false (6) goto L2 : INT
+(8) / i, 2 : INT
+(9) * (8), 2 : INT
+(10) - i, (9) : INT
+(11) == (10), 0 : cmp INT
+(12) if_false (11) goto L3 : INT
+(13) + evens, 1 : INT
+(14) evens = (13)
+(15) goto L4
+(16) L3:
+(17) + odds, 1 : INT
+(18) odds = (17)
+(19) L4:
+(20) + i, 1 : INT
+(21) i = (20)
+(22) goto L1
+(23) L2:
+(24) L0:
+(25) PRINT evens
+(26) PRINT odds
+--- available expressions (a fact holder=a op b: holder holds a op b)
+B0  gen={}  kill={}  IN={}  OUT={}
+B1  gen={}  kill={}  IN={}  OUT={}
+B2  gen={}  kill={}  IN={}  OUT={}
+B3  gen={}  kill={}  IN={}  OUT={}
+B4  gen={}  kill={}  IN={}  OUT={}
+B5  gen={}  kill={}  IN={}  OUT={}
+B6  gen={}  kill={}  IN={}  OUT={}
+B7  gen={}  kill={}  IN={}  OUT={}
+B8  gen={}  kill={}  IN={}  OUT={}
+--- after common subexpression elimination: 0 eliminated (27 triples)
+(0) n = 6
+(1) evens = 0
+(2) odds = 0
+(3) if_false 1 goto L0 : INT
+(4) i = 1
+(5) L1:
+(6) <= i, n : cmp INT
+(7) if_false (6) goto L2 : INT
+(8) / i, 2 : INT
+(9) * (8), 2 : INT
+(10) - i, (9) : INT
+(11) == (10), 0 : cmp INT
+(12) if_false (11) goto L3 : INT
+(13) + evens, 1 : INT
+(14) evens = (13)
+(15) goto L4
+(16) L3:
+(17) + odds, 1 : INT
+(18) odds = (17)
+(19) L4:
+(20) + i, 1 : INT
+(21) i = (20)
+(22) goto L1
+(23) L2:
+(24) L0:
+(25) PRINT evens
+(26) PRINT odds
+--- after constant folding + copy propagation (again): 0 folded, 0 operand(s) propagated (27 triples)
+(0) n = 6
+(1) evens = 0
+(2) odds = 0
+(3) if_false 1 goto L0 : INT
+(4) i = 1
+(5) L1:
+(6) <= i, n : cmp INT
+(7) if_false (6) goto L2 : INT
+(8) / i, 2 : INT
+(9) * (8), 2 : INT
+(10) - i, (9) : INT
+(11) == (10), 0 : cmp INT
+(12) if_false (11) goto L3 : INT
+(13) + evens, 1 : INT
+(14) evens = (13)
+(15) goto L4
+(16) L3:
+(17) + odds, 1 : INT
+(18) odds = (17)
+(19) L4:
+(20) + i, 1 : INT
+(21) i = (20)
+(22) goto L1
+(23) L2:
+(24) L0:
+(25) PRINT evens
+(26) PRINT odds
+--- liveness (first round)
+B0  use={}  def={evens, n, odds}  IN={}  OUT={evens, n, odds}
+B1  use={}  def={i}  IN={evens, n, odds}  OUT={evens, i, n, odds}
+B2  use={i, n}  def={}  IN={evens, i, n, odds}  OUT={evens, i, n, odds}
+B3  use={i}  def={}  IN={evens, i, n, odds}  OUT={evens, i, n, odds}
+B4  use={evens}  def={evens}  IN={evens, i, n, odds}  OUT={evens, i, n, odds}
+B5  use={odds}  def={odds}  IN={evens, i, n, odds}  OUT={evens, i, n, odds}
+B6  use={i}  def={i}  IN={evens, i, n, odds}  OUT={evens, i, n, odds}
+B7  use={}  def={}  IN={evens, odds}  OUT={evens, odds}
+B8  use={evens, odds}  def={}  IN={evens, odds}  OUT={}
+--- after dead code elimination: 0 assignment(s) removed in 1 round(s) (27 triples)
+(0) n = 6
+(1) evens = 0
+(2) odds = 0
+(3) if_false 1 goto L0 : INT
+(4) i = 1
+(5) L1:
+(6) <= i, n : cmp INT
+(7) if_false (6) goto L2 : INT
+(8) / i, 2 : INT
+(9) * (8), 2 : INT
+(10) - i, (9) : INT
+(11) == (10), 0 : cmp INT
+(12) if_false (11) goto L3 : INT
+(13) + evens, 1 : INT
+(14) evens = (13)
+(15) goto L4
+(16) L3:
+(17) + odds, 1 : INT
+(18) odds = (17)
+(19) L4:
+(20) + i, 1 : INT
+(21) i = (20)
+(22) goto L1
+(23) L2:
+(24) L0:
+(25) PRINT evens
+(26) PRINT odds
+
+==== MIPS instructions (static count): 69 unoptimized, 64 optimized (7.2% fewer)

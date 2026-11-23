@@ -1,0 +1,29 @@
+.data
+Lstr0: .asciiz "hello"
+.text
+.globl main
+main:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -16
+    move $sp, $fp
+    li $t0, 1
+    move $a0, $t0
+    li $v0, 1
+    syscall
+    li $t0, 120
+    move $a0, $t0
+    li $v0, 11
+    syscall
+    la $t0, Lstr0
+    move $a0, $t0
+    li $v0, 4
+    syscall
+    addiu $sp, $fp, 16
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra

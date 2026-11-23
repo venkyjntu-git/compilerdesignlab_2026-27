@@ -1,0 +1,10 @@
+int main(){
+    int i;
+    double d;
+    i = 2;
+    d = 2.5;
+    print (i < d);
+    print (d > i);
+    if (i < 2.5) print 7;
+    print (i == 2) ? 1.5 : i;
+}

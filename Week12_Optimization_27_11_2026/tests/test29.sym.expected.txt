@@ -1,0 +1,17 @@
+Global
+  total: DataType.INT
+Functions
+  void bump()   (definition, line 3)
+  int compute(int)   (definition, line 6)
+  int main()   (definition, line 16)
+Function bump
+  (no local variables)
+Function compute
+  n: DataType.INT (parameter)
+  unused: DataType.INT
+  t: DataType.INT
+  k: DataType.INT
+  m: DataType.INT
+Function main
+  x: DataType.INT
+  y: DataType.INT

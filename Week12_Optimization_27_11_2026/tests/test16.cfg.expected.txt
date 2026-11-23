@@ -1,0 +1,46 @@
+B0   preds: -   succs: B1
+    (0) total = 0
+    (1) i = 1
+B1   preds: B0 B5   succs: B6[false] B2[true]
+    (2) L0:
+    (3) <= i, 3 : cmp INT
+    (4) if_false (3) goto L1 : INT
+B2   preds: B1   succs: B3
+    (5) j = 1
+B3   preds: B2 B4   succs: B5[false] B4[true]
+    (6) L2:
+    (7) <= j, i : cmp INT
+    (8) if_false (7) goto L3 : INT
+B4   preds: B3   succs: B3
+    (9) * i, j : INT
+    (10) + total, (9) : INT
+    (11) total = (10)
+    (12) + j, 1 : INT
+    (13) j = (12)
+    (14) goto L2
+B5   preds: B3   succs: B1
+    (15) L3:
+    (16) + i, 1 : INT
+    (17) i = (16)
+    (18) goto L0
+B6   preds: B1   succs: B7
+    (19) L1:
+    (20) PRINT total
+B7   preds: B6 B8   succs: B9[false] B8[true]
+    (21) L4:
+    (22) < total, 0 : cmp INT
+    (23) if_false (22) goto L5 : INT
+B8   preds: B7   succs: B7
+    (24) goto L4
+B9   preds: B7   succs: B11[false] B10[true]
+    (25) L5:
+    (26) == total, 25 : cmp INT
+    (27) if_false (26) goto L6 : INT
+B10   preds: B9   succs: B12
+    (28) goto L7
+B11   preds: B9   succs: B12
+    (29) L6:
+    (30) PRINT 0
+B12   preds: B10 B11   succs: exit
+    (31) L7:
+    (32) PRINT i

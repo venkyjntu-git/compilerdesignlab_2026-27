@@ -1,0 +1,34 @@
+No type errors found.
+
+Type-checked AST (with any inserted casts):
+Function main
+  Assign
+    Var(a)
+    Const(50,DataType.INT)
+  Assign
+    Var(b)
+    Const(40,DataType.INT)
+  Assign
+    Var(flag)
+    Const(0,DataType.INT)
+  If
+    RelOp(>)
+      Var(a)
+      Var(b)
+    Assign
+      Var(flag)
+      Const(1,DataType.INT)
+  Print
+    Var(flag)
+  If
+    RelOp(!=)
+      Var(a)
+      Var(b)
+    Block
+      Assign
+        Var(a)
+        BinOp(-)
+          Var(a)
+          Var(b)
+      Print
+        Var(a)

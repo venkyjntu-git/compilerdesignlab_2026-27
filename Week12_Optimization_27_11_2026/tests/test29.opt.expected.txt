@@ -1,0 +1,163 @@
+==== function bump
+--- 3AC before optimization (2 triples)
+(0) + total, 1 : INT
+(1) total = (0)
+--- after constant folding + copy propagation: 0 folded, 0 operand(s) propagated (2 triples)
+(0) + total, 1 : INT
+(1) total = (0)
+--- available expressions (a fact holder=a op b: holder holds a op b)
+B0  gen={}  kill={}  IN={}  OUT={}
+--- after common subexpression elimination: 0 eliminated (2 triples)
+(0) + total, 1 : INT
+(1) total = (0)
+--- after constant folding + copy propagation (again): 0 folded, 0 operand(s) propagated (2 triples)
+(0) + total, 1 : INT
+(1) total = (0)
+--- liveness (first round)
+B0  use={total}  def={total}  IN={total}  OUT={total}
+--- after dead code elimination: 0 assignment(s) removed in 1 round(s) (2 triples)
+(0) + total, 1 : INT
+(1) total = (0)
+
+==== function compute
+--- 3AC before optimization (14 triples)
+(0) * n, 100 : INT
+(1) unused = (0)
+(2) * n, 2 : INT
+(3) t = (2)
+(4) + n, 1 : INT
+(5) t = (4)
+(6) * total, 2 : INT
+(7) k = (6)
+(8) CALL bump, 0 : VOID
+(9) * total, 2 : INT
+(10) m = (9)
+(11) + t, k : INT
+(12) + (11), m : INT
+(13) RETURN (12) : INT
+--- after constant folding + copy propagation: 0 folded, 0 operand(s) propagated (14 triples)
+(0) * n, 100 : INT
+(1) unused = (0)
+(2) * n, 2 : INT
+(3) t = (2)
+(4) + n, 1 : INT
+(5) t = (4)
+(6) * total, 2 : INT
+(7) k = (6)
+(8) CALL bump, 0 : VOID
+(9) * total, 2 : INT
+(10) m = (9)
+(11) + t, k : INT
+(12) + (11), m : INT
+(13) RETURN (12) : INT
+--- available expressions (a fact holder=a op b: holder holds a op b)
+B0  gen={m=total*2, t=n+1, unused=n*100}  kill={k=total*2, t=n*2}  IN={}  OUT={m=total*2, t=n+1, unused=n*100}
+--- after common subexpression elimination: 0 eliminated (14 triples)
+(0) * n, 100 : INT
+(1) unused = (0)
+(2) * n, 2 : INT
+(3) t = (2)
+(4) + n, 1 : INT
+(5) t = (4)
+(6) * total, 2 : INT
+(7) k = (6)
+(8) CALL bump, 0 : VOID
+(9) * total, 2 : INT
+(10) m = (9)
+(11) + t, k : INT
+(12) + (11), m : INT
+(13) RETURN (12) : INT
+--- after constant folding + copy propagation (again): 0 folded, 0 operand(s) propagated (14 triples)
+(0) * n, 100 : INT
+(1) unused = (0)
+(2) * n, 2 : INT
+(3) t = (2)
+(4) + n, 1 : INT
+(5) t = (4)
+(6) * total, 2 : INT
+(7) k = (6)
+(8) CALL bump, 0 : VOID
+(9) * total, 2 : INT
+(10) m = (9)
+(11) + t, k : INT
+(12) + (11), m : INT
+(13) RETURN (12) : INT
+--- liveness (first round)
+B0  use={n, total}  def={k, m, t, unused}  IN={n, total}  OUT={total}
+--- after dead code elimination: 2 assignment(s) removed in 2 round(s) (10 triples)
+(0) + n, 1 : INT
+(1) t = (0)
+(2) * total, 2 : INT
+(3) k = (2)
+(4) CALL bump, 0 : VOID
+(5) * total, 2 : INT
+(6) m = (5)
+(7) + t, k : INT
+(8) + (7), m : INT
+(9) RETURN (8) : INT
+
+==== function main
+--- 3AC before optimization (11 triples)
+(0) total = 10
+(1) y = 99
+(2) PARAM 4 : INT
+(3) CALL compute, 1 : INT
+(4) x = (3)
+(5) + x, 1 : INT
+(6) PRINT (5)
+(7) PARAM 0 : INT
+(8) CALL compute, 1 : INT
+(9) x = (8)
+(10) PRINT total
+--- after constant folding + copy propagation: 0 folded, 0 operand(s) propagated (11 triples)
+(0) total = 10
+(1) y = 99
+(2) PARAM 4 : INT
+(3) CALL compute, 1 : INT
+(4) x = (3)
+(5) + x, 1 : INT
+(6) PRINT (5)
+(7) PARAM 0 : INT
+(8) CALL compute, 1 : INT
+(9) x = (8)
+(10) PRINT total
+--- available expressions (a fact holder=a op b: holder holds a op b)
+B0  gen={}  kill={}  IN={}  OUT={}
+--- after common subexpression elimination: 0 eliminated (11 triples)
+(0) total = 10
+(1) y = 99
+(2) PARAM 4 : INT
+(3) CALL compute, 1 : INT
+(4) x = (3)
+(5) + x, 1 : INT
+(6) PRINT (5)
+(7) PARAM 0 : INT
+(8) CALL compute, 1 : INT
+(9) x = (8)
+(10) PRINT total
+--- after constant folding + copy propagation (again): 0 folded, 0 operand(s) propagated (11 triples)
+(0) total = 10
+(1) y = 99
+(2) PARAM 4 : INT
+(3) CALL compute, 1 : INT
+(4) x = (3)
+(5) + x, 1 : INT
+(6) PRINT (5)
+(7) PARAM 0 : INT
+(8) CALL compute, 1 : INT
+(9) x = (8)
+(10) PRINT total
+--- liveness (first round)
+B0  use={}  def={total, x, y}  IN={}  OUT={total}
+--- after dead code elimination: 2 assignment(s) removed in 2 round(s) (9 triples)
+(0) total = 10
+(1) PARAM 4 : INT
+(2) CALL compute, 1 : INT
+(3) x = (2)
+(4) + x, 1 : INT
+(5) PRINT (4)
+(6) PARAM 0 : INT
+(7) CALL compute, 1 : INT (result unused)
+(8) PRINT total
+
+==== MIPS instructions (static count): 93 unoptimized, 81 optimized (12.9% fewer)

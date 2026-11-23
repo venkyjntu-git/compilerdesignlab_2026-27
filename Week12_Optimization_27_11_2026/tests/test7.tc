@@ -1,0 +1,16 @@
+int main(){
+    int a,b;
+    double c,d;
+    char e;
+    string s;
+    a = 5;
+    b = 10;
+    c = 3.14;
+    d = a;
+    e = 'x';
+    s = "hello";
+    d = (a > b) ? (double)a/b : c;
+    print d;
+    print (a == b);
+    print s;
+}

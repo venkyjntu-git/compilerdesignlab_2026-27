@@ -1,0 +1,23 @@
+.text
+.globl main
+main:
+    subu $sp, $sp, 4
+    sw   $ra, 0($sp)
+    subu $sp, $sp, 4
+    sw   $fp, 0($sp)
+    addiu $fp, $sp, -20
+    move $sp, $fp
+    li.d $f0, 2.5
+    mov.d $f12, $f0
+    li $v0, 3
+    syscall
+    li $t0, 7
+    move $a0, $t0
+    li $v0, 1
+    syscall
+    addiu $sp, $fp, 20
+    lw    $fp, 0($sp)
+    addiu $sp, $sp, 4
+    lw    $ra, 0($sp)
+    addiu $sp, $sp, 4
+    jr    $ra

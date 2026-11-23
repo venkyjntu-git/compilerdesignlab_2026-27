@@ -1,0 +1,41 @@
+No type errors found.
+
+Type-checked AST (with any inserted casts):
+Function fact
+  If
+    RelOp(<=)
+      Var(n)
+      Const(1,DataType.INT)
+    Return
+      Const(1,DataType.INT)
+  Return
+    BinOp(*)
+      Var(n)
+      Call(fact)
+        BinOp(-)
+          Var(n)
+          Const(1,DataType.INT)
+Function fib
+  If
+    RelOp(<)
+      Var(n)
+      Const(2,DataType.INT)
+    Return
+      Var(n)
+  Return
+    BinOp(+)
+      Call(fib)
+        BinOp(-)
+          Var(n)
+          Const(1,DataType.INT)
+      Call(fib)
+        BinOp(-)
+          Var(n)
+          Const(2,DataType.INT)
+Function main
+  Print
+    Call(fact)
+      Const(5,DataType.INT)
+  Print
+    Call(fib)
+      Const(10,DataType.INT)
