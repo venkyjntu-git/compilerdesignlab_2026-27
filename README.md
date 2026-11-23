@@ -27,16 +27,8 @@ The course structure is inspired by Prof. Uday Khedker's
 | 9 | Control-flow 3AC + MIPS | L3 | CFG, branching, SPIM-verified |
 | 10 | Lexer + parser | L4a → L4b | Multi-function scoping, then params/`return` |
 | 11 | Activation records | L4 | Full calling convention on MIPS |
-| 12 | Optimizations | — | Constant folding, copy propagation, CSE, dead code elimination, loop unrolling |
+| 12 | CFG + optimizations | — | CFG builder; constant folding, copy propagation, CSE (available expressions), dead code elimination (liveness); integrated demo |
 
 Full rationale for the level/stage breakdown is in `CDLabPlan2026_27.pdf`.
 ---
 
-## Submitting your work
-
-
- Fork + Pull Request
-1. Fork this repository once.
-2. Each week, merge upstream `main` into your fork before lab.
-3. Commit your completed week's folder to a branch named `weekNN-<your-roll-number>`.
-4. Open a PR from that branch into your own fork's `main`. Tag the instructor as reviewer.
